@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($sql_insert_user) === TRUE) {
         // Redirect to index.php after successful account creation
-        header("Location: index.html");
+        header("Location: index.php");
         exit();
     } else {
         echo "Error creating user account: " . $conn->error;

@@ -1,4 +1,5 @@
 <?php
+
 // Set up connection constants
 define("SERVER_NAME", "localhost");
 define("DBF_USER_NAME", "root");
@@ -37,8 +38,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
         if ($stmt->fetch()) {
             // Verify the entered password with the hashed password
             if (password_verify($password, $hashed_password)) {
+                //Starts a session to save that the user is logged in
+                session_start();
+
+                //Saves the user's id and their username 
+                $_SESSION['user_id'] = $user_id;
+                $_SESSION['username'] = $username;
+
                 // Authentication successful
-                header("Location: index.html");
+                //Redirects user to logged in version of homepage
+                header("Location: index.php");
                 exit();
             } else {
                 // Authentication failed
@@ -58,4 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
 
 // Close the database connection
 $db->close();
+
 ?>
+
+
