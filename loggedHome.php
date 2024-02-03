@@ -21,9 +21,9 @@ $username = $_SESSION['username'];
          <h1 style="font-size: 2em;">Fitness Tracker App</h1>
      </header>
  
-     <!-- Navtion between site pages  -->
+     <!-- Navigation between site pages  -->
      <nav>
-         <a href="signIn.php">My Profile</a>
+         <a href="userDashboard.php">My Profile</a>
          <a href="accountCreate.php">Create an account</a>
          <a href="createDatabase.php">Create the database</a>
  
