@@ -1,16 +1,22 @@
 /* styleSignIn.css */
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(66, 68, 74);
     margin: 0;
     padding: 0;
+    color: white;
 }
 
 header {
-    background-color: #333;
+    background-color: black;
     color: white;
     text-align: center;
     padding: 1em;
+}
+
+h2{
+    color: black;
 }
 
 main {
@@ -40,7 +46,7 @@ input {
 }
 
 button {
-    background-color: #333;
+    background-color: black;
     color: white;
     padding: 12px;
     border: none;
