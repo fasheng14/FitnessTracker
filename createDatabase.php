@@ -13,6 +13,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Added this to remake the database, 
+//Has to be reacreated at least once so the admin field added to the user table is added
+//otherwise some errors will pop up
+$sql_drop_db = "DROP DATABASE IF EXISTS $dbname";
+if ($conn->query($sql_drop_db) === TRUE) {
+    echo "Database dropped successfully\n";
+} else {
+    echo "Error dropping database: " . $conn->error;
+}
+
 // Create database
 $sql_create_db = "CREATE DATABASE IF NOT EXISTS $dbname";
 if ($conn->query($sql_create_db) === TRUE) {
@@ -37,7 +47,8 @@ CREATE TABLE User (
     Height DECIMAL(5,2),
     Weight DECIMAL(5,2),
     Age INT,
-    Gender VARCHAR(10)
+    Gender VARCHAR(10),
+    isAdmin TINYINT(1)
 )";
 
 $sql_create_activitylog_table = "

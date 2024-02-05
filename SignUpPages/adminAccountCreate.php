@@ -1,3 +1,4 @@
+<!--This is used to make an admin account-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +9,12 @@
 </head>
 <body>
     <header>
-        <h1 style="font-size: 2em;">Create Account</h1>
+        <h1 style="font-size: 2em;">Create an Admin Account</h1>
     </header>
 
     <!-- Main Content  -->
     <main>
-        <form action="processSignUp.php" method="post">
+        <form action="../processSignUp.php" method="post">
             <label for="fname">First Name:</label>
             <input type="text" id="fname" name="fname" required>
 
@@ -43,6 +44,8 @@
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
+
+            <input type="hidden" name="account_type" value='1'>
 
             <button type="submit">Create Account</button>
         </form>

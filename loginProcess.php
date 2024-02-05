@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
     $password = $_POST["password"];
 
     // Prepare the SQL query with a parameterized statement
-    $sql = "SELECT UserID, Username, Password FROM User WHERE Username = ?";
+    $sql = "SELECT UserID, Username, Password, isAdmin FROM User WHERE Username = ?";
 
     // Set up a prepared statement
     if ($stmt = $db->prepare($sql)) {
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
         $stmt->execute();
 
         // Bind the results
-        $stmt->bind_result($user_id, $username, $hashed_password);
+        $stmt->bind_result($user_id, $username, $hashed_password, $isAdmin);
 
         // Check if a row is returned
         if ($stmt->fetch()) {
@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
                 //Saves the user's id and their username 
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['username'] = $username;
+                $_SESSION['isAdmin'] = $isAdmin;
 
                 // Authentication successful
                 //Redirects user to logged in version of homepage
