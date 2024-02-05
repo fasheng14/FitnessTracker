@@ -23,15 +23,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $weight = floatval($_POST["weight"]);
     $age = intval($_POST["age"]);
     $gender = mysqli_real_escape_string($conn, $_POST["gender"]);
+    $isAdmin = intval($_POST["account_type"]);
 
     // Hash the password before storing it in the database
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Insert user data into User table
     $sql_insert_user = "
-        INSERT INTO User (fname, lname, Username, Email, Password, Height, Weight, Age, Gender)
-        VALUES ('$fname', '$lname', '$username', '$email', '$hashed_password', $height, $weight, $age, '$gender')
-
+        INSERT INTO User (fname, lname, Username, Email, Password, Height, Weight, Age, Gender, isAdmin)
+        VALUES ('$fname', '$lname', '$username', '$email', '$hashed_password', $height, $weight, $age, '$gender', '$isAdmin')
     ";
 
     if ($conn->query($sql_insert_user) === TRUE) {

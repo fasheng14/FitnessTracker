@@ -1,10 +1,6 @@
-<?php 
-session_start();
 
-// Grabs the username of the logged in user
-$username = $_SESSION['username'];
-?>
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
  <html lang="en">
  <head>
      <meta charset="UTF-8">
@@ -23,9 +19,9 @@ $username = $_SESSION['username'];
  
      <!-- Navigation between site pages  -->
      <nav>
-         <a href="userDashboard.php">My Profile</a>
-         <a href="accountCreate.php">Create an account</a>
-         <a href="createDatabase.php">Create the database</a>
+         <a href="../signIn.php">sign In</a>
+         <a href="../SignUpPages/accountCreate.php">Create an account</a>
+         <a href="../createDatabase.php">Create the database</a>
  
      </nav>
  
@@ -33,7 +29,7 @@ $username = $_SESSION['username'];
  
      <main>
          
-         <h2 style="margin-bottom: 20px;">Welcome <?php echo $username?> to our Fitness Tracker</h2>
+         <h2 style="margin-bottom: 20px;">Welcome to our Fitness Tracker</h2>
  
  
          <div class="info-container">               
@@ -47,3 +43,4 @@ $username = $_SESSION['username'];
  
  </body>
  </html>
+ 
