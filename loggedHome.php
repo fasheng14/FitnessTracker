@@ -24,8 +24,17 @@ $username = $_SESSION['username'];
      <!-- Navigation between site pages  -->
      <nav>
          <a href="userDashboard.php">My Profile</a>
-         <a href="accountCreate.php">Create an account</a>
          <a href="createDatabase.php">Create the database</a>
+         <?php
+        // Check if the user is logged in
+        if (!empty($username)) {
+            echo '<a href="logout.php">Log out</a>';
+        } else {
+            // If not logged in
+            echo '<a href="signin.php">Sign In</a>';
+        }
+        ?>
+
  
      </nav>
  
@@ -36,10 +45,6 @@ $username = $_SESSION['username'];
          <h2 style="margin-bottom: 20px;">Welcome <?php echo $username?> to our Fitness Tracker</h2>
  
  
-         <div class="info-container">               
- 
-    
-         </div>
      </main>
  
      <footer>

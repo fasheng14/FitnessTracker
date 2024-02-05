@@ -10,3 +10,5 @@ if($username != null){
 } else {
     header("Location: unloggedHome.html");
 }
+
+?>
