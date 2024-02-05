@@ -12,7 +12,10 @@ $username = $_SESSION['username'];
      <title>Fitness Tracker App</title>
      <link rel="stylesheet" type="text/css" href="style.css">
 
-
+     <!-- Mate SC front from Google Fonts-->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
  
  </head>
  <body>

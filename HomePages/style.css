@@ -4,7 +4,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #42444a; 
+    background-color: #2e3142; 
     color: white;
 }
 
@@ -20,7 +20,7 @@ p {
 }
 
 nav {
-    background-color: #abb0c1;
+    background-color: #6c6e86;
     padding: 0.5em;
     text-align: center;
     display: flex;
@@ -53,14 +53,20 @@ main {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: rgb(171, 176, 193);
+    background-color: #6c6e86;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+}
+
+h1{
+    font-family: 'Mate SC', serif; 
+    font-weight: normal;
 }
 
 h1, h2, h3 {
     color: white;
     text-align: center;
+    
 }
 
 
