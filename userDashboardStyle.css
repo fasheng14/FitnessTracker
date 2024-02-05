@@ -10,7 +10,8 @@ header {
 
 h1 {
     margin: 0; 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    font-family: 'Mate SC', serif; 
+    font-weight: normal;
 }
 
 nav {
@@ -32,7 +33,7 @@ nav a:hover {
 
 /* Main */
 body {
-    background-color: rgb(66, 68, 74);
+    background-color: #2E3142;
     margin: 0;
     font-family: Arial, sans-serif;
 }
@@ -77,7 +78,7 @@ th, td {
 .item {
     padding: 20px;
     border-radius: 10px;
-    background-color: lightgrey;
+    background-color: #6c6e86;
 }
 
 #todayWorkout,
@@ -86,5 +87,5 @@ th, td {
 #currentBodyStats {
     border: 1px solid black;
     border-radius: 15px;
-    background-color: rgb(171, 176, 193);
+    background-color: #6c6e86;
 }
