@@ -10,6 +10,7 @@
 <body>
     <header>
         <h1 style="font-size: 2em;">Sign In</h1>
+        <a href="unloggedHome.html">Link to unloggedhome</a>
     </header>
 
     <!-- Main Content  -->

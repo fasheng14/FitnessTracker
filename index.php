@@ -6,7 +6,9 @@ $username = $_SESSION['username'];
 
 //checks if user signed in or not
 if($username != null){
-    header("Location: HomePages/loggedHome.php");
+   header("Location: HomePages/loggedHome.php");
 } else {
     header("Location: HomePages/unloggedHome.html");
 }
+
+?>

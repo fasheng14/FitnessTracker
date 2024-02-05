@@ -1,106 +1,90 @@
 /* Header */
-header{
-    background-color: aquamarine;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    justify-content: center;
+header {
+    background-color: black; 
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 15px;
 }
 
-nav{
+h1 {
+    margin: 0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+nav {
     display: flex;
     gap: 1em;
-    flex-wrap: wrap;
 }
 
-nav a{
-    align-self: center;
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px; 
+    border-radius: 4px;
+    transition: background-color 0.3s; 
+}
+
+nav a:hover {
+    background-color: #555; 
 }
 
 /* Main */
-h1, h2, h3{
-    text-align: center;
+body {
+    background-color: rgb(66, 68, 74);
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-table{
+h1, h2, h3 {
+    text-align: center;
+    color: white;
+}
+
+table {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
 
-tr:nth-child(even) { 
-    background-color: skyblue; 
-} 
+tr:nth-child(even) {
+    background-color: skyblue;
+}
 
-table, th, caption{
+table, th, caption {
     border: 1px solid black;
 }
 
-th, caption{
+th, caption {
     color: white;
     background-color: black;
 }
 
-th, td{
+th, td {
     text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px;
 }
 
-
-.container{
+.container {
     display: grid;
     grid-template-columns: 3fr 2fr;
     grid-template-rows: 1fr 1fr;
     gap: 50px 50px;
-    padding-left: 5%;
-    padding-right: 5%;
-    
+    padding: 5%;
 }
 
-.item{
-    padding: 10px;
+.item {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: lightgrey;
 }
 
-#todayWorkout{
-    width: 100%;
-    height: 100%;
-    min-height: 300px;
+#todayWorkout,
+#dailyReport,
+#goals,
+#currentBodyStats {
     border: 1px solid black;
-    justify-self: center;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-
-#dailyReport{
-    width: 100%;
-    height: 100%;
-    min-height: 300px;
-    border: 1px solid black;
-    justify-self: center;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-#goals{
-
-    width: 100%;
-    height: 100%;
-    min-height: 300px;
-    border: 1px solid black;
-    justify-self: center;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-#currentBodyStats{
-    width: 100%;
-    height: 100%;
-    min-height: 300px;
-    border: 1px solid black;
-    justify-self: center;
-    margin-left: 5%;
-    margin-right: 5%;
+    border-radius: 15px;
+    background-color: rgb(171, 176, 193);
 }
