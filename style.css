@@ -1,28 +1,26 @@
-
 /* styles for index.html */
-
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: #42444a; 
+    color: white;
 }
 
 header {
-    background-color: #343a40;
-    color: #fff;
+    background-color: #000; 
+    color: white;
     text-align: center;
     padding: 1em;
 }
 
-p{
-    color:#fff;
+p {
+    color: white;
 }
 
 nav {
-    background-color: #007bff;
+    background-color: #abb0c1;
     padding: 0.5em;
     text-align: center;
     display: flex;
@@ -31,15 +29,20 @@ nav {
 }
 
 nav a {
-    color: #fff;
+    color: white;
     text-decoration: none;
     font-weight: bold;
     margin: 0 15px;
     font-size: 1.2em;
+    transition: color 0.3s; 
+}
+
+nav a:hover {
+    color: #f8f9fa; 
 }
 
 .profile-symbol {
-    background-color: #fff;
+    background-color: white;
     color: #007bff;
     border-radius: 50%;
     padding: 8px;
@@ -50,42 +53,19 @@ main {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: rgb(171, 176, 193);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
-h2{
-    color: #343a40;
-}
-
-h1 {
-    color: #fff;
-}
-
-.info-box p {
+h1, h2, h3 {
     color: white;
+    text-align: center;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    border: 1px solid #dee2e6;
-    padding: 12px;
-    text-align: left;
-}
-
-th {
-    background-color: #343a40;
-    color: #fff;
-}
 
 a {
-    color: #fff;
+    color: white;
     text-decoration: none;
     font-weight: bold;
 }
@@ -95,8 +75,8 @@ a {
 }
 
 .info-box {
-    background-color: #007bff;
-    color: #fff;
+    background-color: rgb(171, 176, 193);
+    color: white;
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -105,18 +85,9 @@ a {
 footer {
     text-align: center;
     padding: 10px;
-    background-color: #343a40;
-    color: #fff;
+    background-color: black;
+    color: white;
     position: fixed;
     bottom: 0;
     width: 100%;
 }
-
-img {
-    max-width: 200px;
-    height: auto;
-    display: block;
-    margin: 20px 0;
-}
-
-
