@@ -20,7 +20,7 @@
             <nav>
                 <a href="">My Plan</a>
                 <a href="">Community</a>
-                <a href="">Exercise Library</a>
+                <a href="exerciseLibrary.php">Exercise Library</a>
             </nav>
         </header>
         
