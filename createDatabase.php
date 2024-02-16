@@ -83,13 +83,17 @@ CREATE TABLE PlanExercises (
     FOREIGN KEY (PlanID) REFERENCES WorkoutPlans(PlanID)
 )";
 
+//Made some edits to the table 
 $sql_create_exerciselibrary_table = "
 CREATE TABLE ExerciseLibrary (
-    ExerciseID INT PRIMARY KEY,
+    ExerciseID INT AUTO_INCREMENT PRIMARY KEY,
     ExerciseName VARCHAR(255),
     MuscleGroup VARCHAR(50),
+    Days INT,
+    Sets INT,
     Description TEXT,
-    DemoVideoLink VARCHAR(255)
+    DemoVideoLink VARCHAR(255) NULL,
+    Rating INT NULL
 )";
 
 $sql_create_nutritionlog_table = "
