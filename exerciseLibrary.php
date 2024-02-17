@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercise Library</title>
-    <link rel="stylesheet" type="text/css" href="exerciseLibaryStyle.css">
+    <link rel="stylesheet" type="text/css" href="exerciseLibraryStyle.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,26 +18,26 @@
         <nav>
             <a href="userDashboard.php">User Dashboard</a>
             <a href="">My Plan</a>
-            <a href="">Community</a>
+            <a href="communityPage.php">Community</a>
         </nav>
     </header>
 
     <main>
-        <h2>Exercise Libary</h2>
-        <a href="addExercise.php">Add exercise to libary</a>
+        <h2>Exercise Library</h2>
+        <a href="addExercise.php">Add exercise to library</a>
         <div class="container">
             <?php
-                // Database configuration
-                $servername = "localhost";
-                $username = "root";
-                $password = "mysql";
-                $dbname = "fitnessTrackDB";
+            // Database configuration
+            $servername = "localhost";
+            $username = "root";
+            $password = "mysql";
+            $dbname = "fitnessTrackDB";
 
-                $conn = new mysqli($servername, $username, $password, $dbname);
+            $conn = new mysqli($servername, $username, $password, $dbname);
 
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
 
             // Fetch exercises from the database
             $sql_fetch_exercises = "SELECT * FROM ExerciseLibrary";
@@ -51,7 +52,7 @@
                     echo "<p>Muscle Group: " . $row["MuscleGroup"] . "</p>";
                     echo "<p>Number of the days of the week: " . $row["Days"] . "</p>";
                     echo "<p>Number of sets: " . $row["Sets"] . "</p>";
-                    echo "<p>Descripton: " .$row["Description"] . "</p>";
+                    echo "<p>Descripton: " . $row["Description"] . "</p>";
                     //if there is no rating yet then nothing is there 
                     echo "<p>Rating: " . ($row["Rating"] !== null ? $row["Rating"] : "Not rated yet") . "</p>";
                     echo "<button>Rate this Exercise </button>";
@@ -64,7 +65,7 @@
                 echo "No exercises found";
             }
 
-                        
+
 
             // Close the database connection
             $conn->close();
@@ -72,4 +73,3 @@
 
         </div>
     </main>
-        
