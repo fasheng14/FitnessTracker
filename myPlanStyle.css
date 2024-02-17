@@ -1,0 +1,372 @@
+/* Header */
+header {
+    background-color: black; 
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 15px;
+}
+
+h1 {
+    margin: 0; 
+    font-family: 'Mate SC', serif; 
+    font-weight: normal;
+}
+
+/* Main */
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+nav {
+    display: flex;
+    gap: 1em;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.left-column, .right-column {
+    width: 48%;
+    height: 90%
+}
+
+.box {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #6c6e86;
+    margin-bottom: 5px;
+    border: 1px solid black;
+}
+
+
+
+/* Goals Box */
+#goalsBox {
+    width: 90%;
+}
+
+/* Nutrition Box */
+#nutrition {
+    width: 90%;
+    margin-top: 20px;
+}
+
+/* Current Body Stats Box */
+#currentBodyStatsBox {
+    width: 94%;
+    margin-top: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px; 
+    border-radius: 4px;
+    transition: background-color 0.3s; 
+}
+
+nav a:hover {
+    background-color: #555; 
+}
+
+/* Main */
+body {
+    background-color: #2E3142;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    color: white;
+}
+
+
+
+.workout-day {
+    width: 100%; /* Set width to 100% */
+    margin-bottom: 20px; /* Add some space at the bottom */
+}
+
+.workout-day-header {
+    font-size: 18px;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.workout-list {
+    flex-direction: column;
+    max-height: 150px; 
+    width: 100%;
+    overflow-y: auto; /* Enable vertical scrollbar if content exceeds max height */
+}
+
+.workout-list-item {
+    padding: 10px;
+    background-color: #d9d9d9;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.workout-list-item:hover {
+    background-color: #c2c2c2;
+}
+
+
+#newGoalInput{
+    margin-right: 10px;
+}
+
+#goalsList {
+    list-style: none;
+    padding: 0;
+}
+
+.goalItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.goalText {
+    flex-grow: 1;
+}
+
+button{
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6c6e86;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.optionsButton {
+    color: white !important;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1;
+    display: none;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content button {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.dropdown-content button:hover {
+    background-color: #ddd;
+}
+
+/* Goals Form */
+#addGoalForm {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#addGoalForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #6c6e86; /* Match the color with other labels */
+}
+
+#addGoalForm input[type="text"] {
+    width: 100%; /* Adjust width to fill the container */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+#addGoalForm button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    margin-top: 10px; /* Add some margin at the top */
+    border-radius: 5px;
+    background-color: #6c6e86;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#addGoalForm button[type="submit"]:hover {
+    background-color: #555;
+}
+
+/* Goals List */
+#goalsBox div {
+    margin-top: 20px;
+}
+
+#goalsBox h4 {
+    margin-bottom: 10px;
+    color: white; /* Match the color with other headings */
+}
+
+.goalsList {
+    list-style: none;
+    padding: 0;
+}
+
+.goalsList li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.goalsList .goalText {
+    flex-grow: 1;
+}
+
+.goalsList button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #6c6e86; /* Match the color with other buttons */
+}
+
+.goalsList button:hover {
+    color: #555;
+}
+
+/* Style for the current body stats form */
+#currentBodyStatsForm {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#currentBodyStatsForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Nutrition Form */
+#nutritionForm {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#nutritionForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black; /* Match the color with other labels */
+}
+
+#nutritionForm input[type="number"] {
+    width: 100%; /* Adjust width to fill the container */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+#nutritionForm button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    margin-top: 10px; /* Add some margin at the top */
+    border-radius: 5px;
+    background-color: #6c6e86;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#nutritionForm button[type="submit"]:hover {
+    background-color: #555;
+}
+
+#currentBodyStatsForm input[type="number"] {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#currentBodyStatsForm button[type="submit"],
+#addCategoryButton {
+    padding: 10px 20px;
+    border: none;
+    margin: 3px;
+    border-radius: 5px;
+    background-color: #6c6e86;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#currentBodyStatsForm button[type="submit"]:hover,
+#addCategoryButton:hover {
+    background-color: #555;
+}
+
+.modifyGoalButton, .deleteGoalButton{
+    color:black;
+}
+
+.hidden {
+    display: none;
+}
+
+
