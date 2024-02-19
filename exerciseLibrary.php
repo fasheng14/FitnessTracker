@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercise Library</title>
-    <link rel="stylesheet" type="text/css" href="exerciseLibraryStyle.css">
+    <link rel="stylesheet" type="text/css" href="exerciseLibraryStyles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
 
     <main>
         <h2>Exercise Library</h2>
-        <a href="addExercise.php">Add exercise to library</a>
+        <a href="addExercise.php" class="addLibrary">Add exercise to library</a>
         <div class="container">
             <?php
             // Database configuration
@@ -49,12 +49,12 @@
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='exercise-container'>";
                     echo "<h3>" . $row["ExerciseName"] . "</h3>";
-                    echo "<p>Muscle Group: " . $row["MuscleGroup"] . "</p>";
-                    echo "<p>Number of the days of the week: " . $row["Days"] . "</p>";
-                    echo "<p>Number of sets: " . $row["Sets"] . "</p>";
-                    echo "<p>Descripton: " . $row["Description"] . "</p>";
+                    echo "<p><b>Muscle Group:</b> " . $row["MuscleGroup"] . "</p>";
+                    echo "<p><b>Number of days</b>: " . $row["Days"] . "</p>";
+                    echo "<p><b>Number of sets:</b> " . $row["Sets"] . "</p>";
+                    echo "<p><b>Descripton:</b> " . $row["Description"] . "</p>";
                     //if there is no rating yet then nothing is there 
-                    echo "<p>Rating: " . ($row["Rating"] !== null ? $row["Rating"] : "Not rated yet") . "</p>";
+                    echo "<p><b>Rating:</b> " . ($row["Rating"] !== null ? $row["Rating"] : "Not rated yet") . "</p>";
                     echo "<button>Rate this Exercise </button>";
                     echo "<button>Save this Exercise</button>";
                     echo "</div>";

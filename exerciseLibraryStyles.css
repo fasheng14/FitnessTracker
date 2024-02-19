@@ -24,7 +24,11 @@ nav {
     padding: 8px; 
     border-radius: 4px;
     transition: background-color 0.3s; 
+    background-color: #6c6e86;
+    
 }
+
+
 
  a:hover {
     background-color: #555; 
@@ -42,23 +46,31 @@ h1, h2 {
 }
 
 .container {
+    margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    
 }
 
 .exercise-container {
-    background-color: white;
+    background-color: #6c6e86;
     padding: 20px;
-    border-radius: 8px;
-    width: 300px;
+    width: 600px;
+    height: 250x;
+    border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin: 10px;
 }
+
+.exercise-container h3 {
+    color: white;
+}
 .exercise-container p {
     margin: 0;  
-    overflow: hidden;  
+    overflow: hidden;
+    line-height: 1.5;  
 }
 
 button {
@@ -74,5 +86,5 @@ button {
 }
 
 button:hover {
-    background-color: #303F9F;
+    background-color: #555;
 }
