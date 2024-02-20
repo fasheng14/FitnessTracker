@@ -20,7 +20,7 @@
 
         <!-- Navigation between site pages  -->
         <nav>
-            <a href="">My Plan</a>
+            <a href="myPlan.php">My Plan</a>
             <a href="communityPage.php">Community</a>
             <a href="exerciseLibrary.php">Exercise Library</a>
         </nav>
