@@ -19,11 +19,14 @@
             <h1>Community Page</h1>
 
             <!-- Navigation between site pages  -->
-            <nav>
-                <a href="userDashboard.php">User Dashboard</a>
-                <a href="">My Plan</a>
-                <a href="exerciseLibrary.php">Exercise Library</a>
-            </nav>
+            <div class="dropDown">
+                <button class="dropButton">Menu</button>
+                <nav class="dropContent">
+                    <a href="myPlan.php">My Plan</a>
+                    <a href="userDashboard.php">My Dashboard</a>
+                    <a href="exerciseLibrary.php">Exercise Library</a>
+                </nav>
+            </div>
         </header>
 
         <!-- Main Content  -->
