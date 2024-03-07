@@ -17,18 +17,23 @@
 <body>
     <header>
         <h1>Fitness Tracker</h1>
+        <h1>Performance Hub</h1>
 
         <!-- Navigation between site pages  -->
-        <nav>
-            <a href="myPlan.php">My Plan</a>
-            <a href="communityPage.php">Community</a>
-            <a href="exerciseLibrary.php">Exercise Library</a>
-        </nav>
+        <div class="dropDown">
+            <button class="dropButton">Menu</button>
+            <nav class="dropContent">
+                <a href="myPlan.php">My Plan</a>
+                <a href="communityPage.php">Community</a>
+                <a href="exerciseLibrary.php">Exercise Library</a>
+            </nav>
+        </div>
+
     </header>
 
     <!-- Main Content  -->
     <main>
-        <h2>Performance Hub</h2>
+
         <div class="container">
 
             <!-- Today's workout item box  -->

@@ -29,11 +29,15 @@ if($username === null){
 <body>
     <header>
         <h1>Fitness Tracker</h1>
-        <nav>
-            <a href="userDashboard.php">User Dashboard</a>
-            <a href="">My Plan</a>
-            <a href="communityPage.php">Community</a>
-        </nav>
+        <div class="dropDown">
+            <button class="dropButton">Menu</button>
+            <nav class="dropContent">
+                <a href="HomePages/loggedHome.php">Home Page</a>
+                <a href="userDashboard.php">My Profile</a>
+                <a href="myPlan.php">My Plan</a>
+                <a href="communityPage.php">Community</a>
+            </nav>
+        </div>
     </header>
 
     <main>
