@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+// Grabs the username of the logged in user
+$username = $_SESSION['username'];
+
+//checks if user signed in or not
+//If not sends back to home, so that they can log in
+if($username === null){
+   header("Location: HomePages/unloggedHome.html");
+} 
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +42,25 @@
 
     <main>
         <h2>Exercise Library</h2>
-        <a href="addExercise.php" class="addLibrary">Add exercise to library</a>
+        <!--adds a nav for users to view their saved exercises -->
+        <div class="options-container">
+            <a href="addExercise.php" class="addLibrary">Add exercise to library</a><br>
+            <a href="userExerciseLibrary.php" class="savedLibrary">Saved exercises</a>
+            <!-- Allows user to sort the exercises by musicle group that they are interested in -->
+            <form action="" method="get" id="exerciseSortForm">
+                <label for="exerciseSort">Sort by Muscle Group:</label>
+                <!--calls the submit form function onces the changes the selection -->
+                <select name="exerciseSort" id="exerciseSort" onchange="submitForm()">
+                    <option value="">Select</option>
+                    <option value="all">All</option>
+                    <option value="Full-body">Full Body</option>
+                    <option value="Legs">Legs</option>
+                    <option value="Arms">Arms</option>
+                    <option value="Chest">Chest</option>
+                    <option value="Back">Back</option>
+                </select>
+            </form>
+        </div>
         <div class="container">
             <?php
             // Database configuration
@@ -43,11 +75,19 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            // Fetch exercises from the database
-            $sql_fetch_exercises = "SELECT * FROM ExerciseLibrary";
+            //Checks if the exercises was sorted, if not defaults to all from the database
+            $sort = isset($_GET['exerciseSort']) ? $_GET['exerciseSort'] : 'all';
+
+            // Fetches exercises from the database based on sorting option selected 
+            if ($sort == 'all') {
+                $sql_fetch_exercises = "SELECT * FROM ExerciseLibrary";
+            } else {
+                $sql_fetch_exercises = "SELECT * FROM ExerciseLibrary WHERE MuscleGroup = '$sort'";
+            }
+
             $result = $conn->query($sql_fetch_exercises);
 
-            // Check if there are any exercises
+            // Check if there are any exercises for that group
             if ($result->num_rows > 0) {
                 // Displays the results in sepreate conntainer for each exercise
                 while ($row = $result->fetch_assoc()) {
@@ -60,7 +100,7 @@
                     //if there is no rating yet then nothing is there 
                     echo "<p><b>Rating:</b> " . ($row["Rating"] !== null ? $row["Rating"] : "Not rated yet") . "</p>";
                     echo "<button>Rate this Exercise </button>";
-                    echo "<button>Save this Exercise</button>";
+                    echo "<button onclick='saveExercise(" . $row['ExerciseID'] . ")'>Save this Exercise</button>";
                     echo "</div>";
 
 
@@ -77,3 +117,19 @@
 
         </div>
     </main>
+    <script>
+        //function for the user saving an exercise
+        function saveExercise(exerciseId) {
+        // Make an AJAX request to the server to save the exercise to the library using saveExercise.php
+        var httpRequest = new XMLHttpRequest();
+        httpRequest.open("GET", "saveExercise.php?exerciseId=" + exerciseId, true);
+        httpRequest.send();
+    }
+
+    //function that submits the form when user makes a sorting selection 
+    function submitForm() {
+        document.getElementById("exerciseSortForm").submit();
+        }
+    </script>
+
+</body>

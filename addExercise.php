@@ -20,9 +20,17 @@
         <form action="processAddExercise.php" method="post">
             <label for="exercise">Name of Exercise:</label>
             <input type="text" id="exercise" name="exercise" required>
-
+            <!-- Switched to a select option -->
             <label for="muscle">Muscle Group:</label>
-            <input type="text" id="muscle" name="muscle" required>
+            <select name="muscle" id="muscle">
+                <option value="">Select</option>
+                <option value="Full-body">Full Body</option>
+                <option value="Legs">Legs</option>
+                <option value="Arms">Arms</option>
+                <option value="Chest">Chest</option>
+                <option value="Back">Back</option>
+
+            </select>
 
             <label for="days">How many days of week?:</label>
             <input type="number" id="days" name="days" required>

@@ -1,3 +1,4 @@
+
 header {
     background-color: black; 
     color: white;
@@ -9,7 +10,7 @@ header {
 
 h1 {
     margin: 0; 
-    font-family: 'Mate SC', serif; 
+    font-family: 'Mate SC';
     font-weight: normal;
 }
 
@@ -66,24 +67,58 @@ h1 {
     padding: 8px; 
     border-radius: 4px;
     transition: background-color 0.3s; 
-    background-color: #6c6e86;
-    
+    background-color: #6c6e86; 
 }
 
 .addLibrary:hover {
     background-color: #555; 
 }
 
+.savedLibrary {
+    color: white;
+    text-decoration: none;
+    padding: 8px; 
+    border-radius: 4px;
+    transition: background-color 0.3s; 
+    background-color: #6c6e86; 
+}
+
+
+
 body {
     background-color: #2E3142;
     margin: 0;
     font-family: Arial, sans-serif;
+    display: flexbox;
 }
+
+
 
 h1, h2 {
     text-align: center;
     color: white;
 }
+
+.options-container {
+    display: flex;
+    padding: 15px;
+    gap: .5em;
+}
+
+
+
+
+.options-container #exerciseSortForm {
+    background-color: #6c6e86;;
+    color: white;
+    padding: 8px; 
+    border-radius: 4px;
+    transition: background-color 0.3s; 
+}
+
+
+
+
 
 .container {
     margin-top: 10px;
