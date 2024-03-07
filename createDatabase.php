@@ -96,6 +96,15 @@ CREATE TABLE ExerciseLibrary (
     Rating INT NULL
 )";
 
+//Table for exercise saved by user table
+$sql_create_userExerciseLibrary_table = "
+CREATE TABLE userExerciseLibrary (
+    UserID INT,
+    ExerciseID INT,
+    FOREIGN KEY (UserID) REFERENCES User(UserID),
+    FOREIGN KEY (ExerciseID) REFERENCES ExerciseLibrary(ExerciseID)
+)";
+
 $sql_create_nutritionlog_table = "
 CREATE TABLE NutritionLog (
     LogID INT PRIMARY KEY,
@@ -125,6 +134,7 @@ $conn->query($sql_create_activitylog_table);
 $conn->query($sql_create_workoutplans_table);
 $conn->query($sql_create_planexercises_table);
 $conn->query($sql_create_exerciselibrary_table);
+$conn->query($sql_create_userExerciseLibrary_table);
 $conn->query($sql_create_nutritionlog_table);
 $conn->query($sql_create_progresstracking_table);
 
