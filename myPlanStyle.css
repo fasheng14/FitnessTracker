@@ -181,6 +181,15 @@ h1, h2, h3 {
     flex-grow: 1;
 }
 
+/* Styling for <p> elements */
+p {
+    color: white; 
+    margin: 10px 0; 
+    font-family: 'Mate SC', serif; 
+    font-size: 18px; 
+    line-height: 1.5; 
+}
+
 button{
     padding: 10px 20px;
     margin-left: 10px;

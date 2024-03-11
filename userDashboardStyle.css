@@ -72,6 +72,15 @@ h1, h2, h3 {
     color: white;
 }
 
+/* Styling for <p> elements */
+p {
+    color: white; 
+    margin: 10px 0; 
+    font-family: 'Mate SC', serif; 
+    font-size: 18px; 
+    line-height: 1.5; 
+}
+
 table {
     width: 100%;
     margin-left: auto;
@@ -80,6 +89,10 @@ table {
 
 tr:nth-child(even) {
     background-color: skyblue;
+}
+
+tr:nth-child(odd) {
+    background-color: white;
 }
 
 table, th, caption {
