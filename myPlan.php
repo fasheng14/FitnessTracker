@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Check if UserID is set in session
+if (!isset($_SESSION["user_id"])) {
+    // Redirect to the sign-in page or handle the situation accordingly
+    header("Location: signIn.php");
+    exit; // Stop further execution
+}
+
+$userID = $_SESSION["user_id"];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,9 +105,9 @@
                             <button class="selectNoWorkout">Rest Day</button>
                         </div>
                         <!-- Custom Workout Form (initially hidden) -->
-                        <form id="customWorkoutForm" class="hidden">
+                        <form id="customWorkoutForm" class="hidden" action="customWorkoutProcess.php" method="post">
                             <label for="dayOfWeek">Day of the Week:</label>
-                            <select id="dayOfWeek">
+                            <select id="dayOfWeek" name="dayOfWeek">
                                 <option value="Monday">Monday</option>
                                 <option value="Tuesday">Tuesday</option>
                                 <option value="Wednesday">Wednesday</option>
@@ -139,9 +151,9 @@
                 <!-- Current Body Stats Box -->
                 <div class="box" id="currentBodyStatsBox">
                     <h3>Current Body and Performance Stats</h3>
-                    <form id="currentBodyStatsForm">
+                    <form id="currentBodyStatsForm" action="updatePerformanceStats.php" method="post">
                         <label for="weight">Weight (lb):</label>
-                        <input type="number" id="weight" name="weight" required><br><br>
+                        <input type="number" id="weight" name="weight" ><br><br>
                         <label for="benchPR">Bench Press Personal Record (lb):</label>
                         <input type="number" id="benchPR" name="benchPR"><br><br>
 
@@ -153,8 +165,9 @@
 
                         <label for="longestWorkout">Longest Workout (minutes):</label>
                         <input type="number" id="longestWorkout" name="longestWorkout"><br><br>
+
+                        <!-- Submit button to update stats -->
                         <button type="submit">Update Stats</button>
-                        <button type="button" id="addCategoryButton">Add Category</button>
                     </form>
                 </div>
             </div>
@@ -164,10 +177,10 @@
                 <div class="box" id="goalsBox">
                     <h3>Goals</h3>
                     <!-- Form to add new goal -->
-                    <form id="addGoalForm">
-                        <input type="text" id="newGoalInput" placeholder="Enter new goal">
+                    <form id="addGoalForm" action="addGoalProcess.php" method="post">
+                        <input type="text" id="newGoalInput" name="goalText" placeholder="Enter new goal">
                         <label for="goalCategory">Select Category:</label>
-                        <select id="goalCategory">
+                        <select id="goalCategory" name="goalCategory">
                             <option value="weekly">Weekly Workout Goals</option>
                             <option value="nutrition">Nutrition Goals</option>
                             <option value="weightLoss">Weight Loss Goals</option>
@@ -218,52 +231,49 @@
     </main>
 
     <script>
-        $(document).ready(function () {
-            // Function to handle adding a new goal
-            $("#addGoalForm").submit(function (event) {
-                event.preventDefault(); // Prevent default form submission
-
-                // Get the value of the new goal input and selected category
-                var newGoal = $("#newGoalInput").val().trim();
-                var category = $("#goalCategory").val();
-
-                // Check if the input is not empty
-                if (newGoal !== "") {
-                    // Create a new list item for the goal
-                    var newGoalItem = "<li><span class='goalText'>" + newGoal + "</span>" +
-                        "<div class='dropdown'>" +
-                        "<button class='optionsButton'>...</button>" +
-                        "<div class='dropdown-content'>" +
-                        "<button class='modifyGoalButton'>Modify</button>" +
-                        "<button class='deleteGoalButton'>Delete</button>" +
-                        "</div>" +
-                        "</div>" +
-                        "</li>";
-
-                    // Append the new goal item to the selected category's goals list
-                    $("#" + category.replace(/\s+/g, "_") + "GoalsList").append(newGoalItem);
-
-                    // Clear the input field
-                    $("#newGoalInput").val("");
-                }
+        $(document).ready(function() {
+            // Show or hide workout options
+            $(".add-workout-section h3").click(function() {
+                $(".workout-options").toggleClass("show");
             });
 
-            // Handle modification of goal
-            $("#goalsBox").on("click", ".modifyGoalButton", function () {
-                var goalText = $(this).closest("li").find(".goalText");
-                var modifiedGoal = prompt("Modify Goal", $(goalText).text());
-                if (modifiedGoal !== null && modifiedGoal.trim() !== "") {
-                    $(goalText).text(modifiedGoal);
-                }
+            // Prevent workout options from closing when clicking inside
+            $(".workout-options").on("click", function(event) {
+                event.stopPropagation();
             });
 
-            // Handle deletion of goal
-            $("#goalsBox").on("click", ".deleteGoalButton", function () {
-                $(this).closest("li").remove();
+            // Close workout options when clicking outside
+            $(document).on("click", function() {
+                $(".workout-options").removeClass("show");
+            });
+
+            // Select exercise library option
+            $(".selectExerciseLibrary").click(function() {
+                console.log("Exercise library selected");
+            });
+
+            // Select no workout option
+            $(".selectNoWorkout").click(function() {
+                console.log("No workout selected");
+            });
+
+            // Select custom workout option
+            $(".selectCustomWorkout").click(function() {
+                $("#customWorkoutForm").toggleClass("hidden");
+            });
+
+            // Hide custom workout form when other options are clicked
+            $(".selectExerciseLibrary, .selectNoWorkout").click(function() {
+                $("#customWorkoutForm").addClass("hidden");
+            });
+
+            // Select rest day option
+            $(".selectNoWorkout").click(function() {
+                $("#restDayForm").toggleClass("hidden");
             });
 
             // Handle options button to show dropdown content
-            $("#goalsBox").on("click", ".optionsButton", function (event) {
+            $("#goalsBox").on("click", ".optionsButton", function(event) {
                 event.stopPropagation();
                 var dropdownContent = $(this).next(".dropdown-content");
                 $(".dropdown-content").not(dropdownContent).removeClass("show");
@@ -271,116 +281,99 @@
             });
 
             // Prevent dropdown from closing when clicking inside the dropdown
-            $(".dropdown-content").on("click", function (event) {
+            $(".dropdown-content").on("click", function(event) {
                 event.stopPropagation();
             });
 
             // Close dropdown when clicking outside the dropdown
-            $(document).on("click", function () {
+            $(document).on("click", function() {
                 $(".dropdown-content").removeClass("show");
             });
 
-            // Show or hide workout options
-            $(".add-workout-section h3").click(function () {
-                $(".workout-options").toggleClass("show");
-            });
+            
+            // Function to load goals
+            function loadGoals() {
+                $.ajax({
+                    url: 'loadGoalsFromDatabase.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        // Populate each goal list
+                        data.forEach(function(goal) {
+                            switch (goal.Category) {
+                                case 'weekly':
+                                    $('#weeklyGoalsList').append('<li>' + goal.GoalText + '</li>');
+                                    break;
+                                case 'nutrition':
+                                    $('#nutritionGoalsList').append('<li>' + goal.GoalText + '</li>');
+                                    break;
+                                case 'weightLoss':
+                                    $('#weightLossGoalsList').append('<li>' + goal.GoalText + '</li>');
+                                    break;
+                                default:
+                                    break;
+                            }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error loading goals:', status, error);
+                    }
+                });
+            }
 
-            // Prevent workout options from closing when clicking inside
-            $(".workout-options").on("click", function (event) {
-                event.stopPropagation();
-            });
+            // Load goals when the page is ready
+            loadGoals();
 
-            // Close workout options when clicking outside
-            $(document).on("click", function () {
-                $(".workout-options").removeClass("show");
-            });
+            // Load custom workouts
+            function loadCustomWorkouts() {
+                $.ajax({
+                    url: 'loadCustomWorkouts.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        // Populate each day of the week with custom workouts
+                        data.forEach(function(workout) {
+                            var dayOfWeek = workout.DayOfWeek;
+                            var workoutName = workout.Name;
+                            $('#' + dayOfWeek + 'WorkoutList').append('<p>' + workoutName + '</p>');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error loading custom workouts:', status, error);
+                    }
+                });
+            }
 
-            // Select exercise library option
-            $(".selectExerciseLibrary").click(function () {
-                console.log("Exercise library selected");
-            });
-
-            // Select no workout option
-            $(".selectNoWorkout").click(function () {
-                console.log("No workout selected");
-            });
-
-            // Select custom workout option
-            $(".selectCustomWorkout").click(function () {
-                $("#customWorkoutForm").toggleClass("hidden");
-            });
-
-            // Hide custom workout form when other options are clicked
-            $(".selectExerciseLibrary, .selectNoWorkout").click(function () {
-                $("#customWorkoutForm").addClass("hidden");
-            });
+            // Load custom workouts when the page is ready
+            loadCustomWorkouts();
 
             // Handle submission of custom workout form
-            $("#customWorkoutForm").submit(function (event) {
-                event.preventDefault();
-                // Get form data
-                var name = $("#name").val();
-                var dayOfWeek = $("#dayOfWeek").val();
-                var sets = $("#sets").val();
-                var reps = $("#reps").val();
-                var weight = $("#weight").val();
-                var distance = $("#distance").val();
-                var duration = $("#duration").val();
-                var description = $("#description").val();
+            $("#customWorkoutForm").submit(function(event) {
+                event.preventDefault(); // Prevent the default form submission
 
-                // Create the new workout item HTML
-                var newWorkoutItem = "<div class='workout-list-item'>" +
-                    "<strong>Name:</strong> " + name + "<br>" +
-                    "<strong>Sets:</strong> " + sets + "<br>" +
-                    "<strong>Reps:</strong> " + reps + "<br>" +
-                    "<strong>Weight:</strong> " + weight + "<br>" +
-                    "<strong>Distance:</strong> " + distance + "<br>" +
-                    "<strong>Duration:</strong> " + duration +
-                    "</div>";
+                // Serialize the form data
+                var formData = $(this).serialize();
 
-                // Append the new workout item to the appropriate day of the week's workout list
-                $("#" + dayOfWeek + "WorkoutList").append(newWorkoutItem);
+                // Submit the form via AJAX
+                $.ajax({
+                    url: 'customWorkoutProcess.php',
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        // Reload custom workouts after successfully adding a new one
+                        loadCustomWorkouts();
 
-                // Clear the form fields
-                $("#sets").val("");
-                $("#reps").val("");
-                $("#weight").val("");
-                $("#distance").val("");
-                $("#duration").val("");
-                $("#description").val("");
-
-                // Hide the form
-                $("#customWorkoutForm").addClass("hidden");
-
-                console.log("Custom workout form submitted");
+                        // Reset the form
+                        $("#customWorkoutForm")[0].reset();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error submitting custom workout form:', status, error);
+                    }
+                });
             });
-
-            // Select rest day option
-            $(".selectNoWorkout").click(function () {
-                $("#restDayForm").toggleClass("hidden");
-            });
-
-            // Handle submission of rest day form
-            $("#restDayForm").submit(function (event) {
-                event.preventDefault();
-                // Get selected day for rest
-                var restDayOfWeek = $("#restDayOfWeek").val();
-
-                // Create the new rest day item HTML
-                var newRestDayItem = "<div class='workout-list-item'>Rest Day</div>";
-
-                // Append the new rest day item to the appropriate day of the week's workout list
-                $("#" + restDayOfWeek + "WorkoutList").append(newRestDayItem);
-
-                // Hide the form
-                $("#restDayForm").addClass("hidden");
-
-                console.log("Rest day form submitted");
-            });
-
         });
-
     </script>
+
 
 </body>
 <footer>
