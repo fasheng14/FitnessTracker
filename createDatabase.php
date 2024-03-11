@@ -96,15 +96,6 @@ CREATE TABLE ExerciseLibrary (
     Rating INT NULL
 )";
 
-//Table for exercise saved by user table
-$sql_create_userExerciseLibrary_table = "
-CREATE TABLE userExerciseLibrary (
-    UserID INT,
-    ExerciseID INT,
-    FOREIGN KEY (UserID) REFERENCES User(UserID),
-    FOREIGN KEY (ExerciseID) REFERENCES ExerciseLibrary(ExerciseID)
-)";
-
 $sql_create_nutritionlog_table = "
 CREATE TABLE NutritionLog (
     LogID INT PRIMARY KEY,
@@ -128,15 +119,57 @@ CREATE TABLE ProgressTracking (
     FOREIGN KEY (UserID) REFERENCES User(UserID)
 )";
 
+// New table for custom workouts
+$sql_create_customworkouts_table = "
+CREATE TABLE CustomWorkouts (
+    CustomWorkoutID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT,
+    Name VARCHAR(255),
+    Sets INT,
+    Reps INT,
+    Weight DECIMAL(5,2),
+    Distance DECIMAL(5,2),
+    Duration INT,
+    DayOfWeek VARCHAR(20),
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
+)";
+
+// create the goals table
+$sql_create_goals_table = "
+CREATE TABLE Goals (
+    GoalID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT,
+    GoalText VARCHAR(255),
+    Category VARCHAR(50),
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
+)";
+
+$sql_create_bodystats_table = "
+CREATE TABLE BodyStats (
+    UserID INT NOT NULL,
+    Weight DECIMAL(5,2),
+    BenchPressPR DECIMAL(5,2),
+    SquatPR DECIMAL(5,2),
+    LongestDistance DECIMAL(5,2),
+    LongestWorkout INT,
+    PRIMARY KEY (UserID),
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
+)";
+
+
 // Execute SQL statements to create tables
 $conn->query($sql_create_user_table);
 $conn->query($sql_create_activitylog_table);
 $conn->query($sql_create_workoutplans_table);
 $conn->query($sql_create_planexercises_table);
 $conn->query($sql_create_exerciselibrary_table);
-$conn->query($sql_create_userExerciseLibrary_table);
 $conn->query($sql_create_nutritionlog_table);
 $conn->query($sql_create_progresstracking_table);
+$conn->query($sql_create_customworkouts_table);
+$conn->query($sql_create_goals_table);
+$conn->query($sql_create_bodystats_table);
+
+
 
 // Close connection
 $conn->close();
