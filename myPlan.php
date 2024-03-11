@@ -335,7 +335,12 @@ $userID = $_SESSION["user_id"];
                         data.forEach(function(workout) {
                             var dayOfWeek = workout.DayOfWeek;
                             var workoutName = workout.Name;
-                            $('#' + dayOfWeek + 'WorkoutList').append('<p>' + workoutName + '</p>');
+                            var workoutSets = workout.Sets;
+                            var workoutReps = workout.Reps;
+                            var workoutWeight = workout.Weight;
+                            var workoutDistance = workout.Distance;
+                            var workoutDuration = workout.Duration;
+                            $('#' + dayOfWeek + 'WorkoutList').append('<p>' + "Name: " + workoutName + ' ' + "Sets: " + workoutSets + ' ' + "Reps: " + workoutReps + ' ' +  "Weight: " + workoutWeight + ' ' + "Distance: " + workoutDistance + ' ' + "Duration: " + workoutDuration +'</p>');
                         });
                     },
                     error: function(xhr, status, error) {

@@ -102,18 +102,22 @@ if (!$result) {
             <!-- Goals item box -->
             <div class="item" id="goals">
                 <h3>Goals</h3>
+                <h4>Weekly Workout Goals</h4>
                 <p id="weeklyWorkoutGoal"></p>
+                <h4>Weight Loass Goals</h4>
                 <p id="weightLossGoal"> </p>
+                <h4>Nutrition Goals</h4>
                 <p id="nutritionalGoal"> </p>
             </div>
 
             <!-- Current body stats item box  -->
             <div class="item" id="currentBodyStat">
                 <h3>My Personal Records</h3>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p id="weight"></p>
+                <p id="benchPressPR"></p>
+                <p id="squatPR"></p>
+                <p id="longestDistance"></p>
+                <p id="longestWorkout"></p>
             </div>
         </div>
     </main>
@@ -156,15 +160,15 @@ if (!$result) {
                             switch (goal.Category) {
                                 case 'weekly':
                                     // Append a new paragraph for each weekly goal
-                                    $('#weeklyWorkoutGoal').append('<p>Weekly Workout Goal: ' + goal.GoalText + '</p>');
+                                    $('#weeklyWorkoutGoal').append('<p>' + goal.GoalText + '</p>');
                                     break;
                                 case 'nutrition':
                                     // Append a new paragraph for each nutritional goal
-                                    $('#nutritionalGoal').append('<p>Nutritional Goal: ' + goal.GoalText + '</p>');
+                                    $('#nutritionalGoal').append('<p>' + goal.GoalText + '</p>');
                                     break;
                                 case 'weightLoss':
                                     // Append a new paragraph for each weight loss goal
-                                    $('#weightLossGoal').append('<p>Weight Loss Goal: ' + goal.GoalText + '</p>');
+                                    $('#weightLossGoal').append('<p>' + goal.GoalText + '</p>');
                                     break;
                                 default:
                                     break;
@@ -179,6 +183,38 @@ if (!$result) {
 
             // Call the function to load goals for the dashboard
             loadGoalsForDashboard();
+
+            // Function to fetch body stats data from the server
+            function loadBodyStats() {
+                $.ajax({
+                    url: 'loadBodyStats.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        // Check if data is empty
+                        if (data.length > 0) {
+                            // Extract the first row of data (assuming there's only one row per user)
+                            var bodyStats = data[0];
+
+                            // Populate the HTML elements with body stats data
+                            $('#weight').text('Weight: ' + bodyStats.Weight + ' lb');
+                            $('#benchPressPR').text('Bench Press PR: ' + bodyStats.BenchPressPR + ' lb');
+                            $('#squatPR').text('Squat PR: ' + bodyStats.SquatPR + ' lb');
+                            $('#longestDistance').text('Longest Distance Ran: ' + bodyStats.LongestDistance + ' mi');
+                            $('#longestWorkout').text('Longest Workout: ' + bodyStats.LongestWorkout + ' minutes');
+                        } else {
+                            // If no data is returned, display a message
+                            $('#currentBodyStat').append('<p>No body stats available.</p>');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error loading body stats:', status, error);
+                    }
+                });
+            }
+
+            // Call the function to load body stats when the page is ready
+            loadBodyStats();
         });
     </script>
 </body>
