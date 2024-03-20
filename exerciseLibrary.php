@@ -4,6 +4,8 @@ session_start();
 // Grabs the username of the logged in user
 $username = $_SESSION['username'];
 
+$isAdmin = $_SESSION['isAdmin'];
+
 //checks if user signed in or not
 //If not sends back to home, so that they can log in
 if($username === null){
@@ -36,6 +38,7 @@ if($username === null){
                 <a href="userDashboard.php">My Profile</a>
                 <a href="myPlan.php">My Plan</a>
                 <a href="communityPage.php">Community</a>
+                <a href="logout.php">Sign out </a>
             </nav>
         </div>
     </header>
@@ -97,9 +100,9 @@ if($username === null){
                     echo "<p><b>Number of days</b>: " . $row["Days"] . "</p>";
                     echo "<p><b>Number of sets:</b> " . $row["Sets"] . "</p>";
                     echo "<p><b>Descripton:</b> " . $row["Description"] . "</p>";
-                    //if there is no rating yet then nothing is there 
-                    echo "<p><b>Rating:</b> " . ($row["Rating"] !== null ? $row["Rating"] : "Not rated yet") . "</p>";
-                    echo "<button>Rate this Exercise </button>";
+                    if ($isAdmin == 1) {
+                        echo "<button onclick= 'deleteExercise(" . $row['ExerciseID'] . ")'>Delete this Exercise</button>";
+                    }
                     echo "<button onclick='saveExercise(" . $row['ExerciseID'] . ")'>Save this Exercise</button>";
                     echo "</div>";
 
@@ -120,16 +123,31 @@ if($username === null){
     <script>
         //function for the user saving an exercise
         function saveExercise(exerciseId) {
-        // Make an AJAX request to the server to save the exercise to the library using saveExercise.php
-        var httpRequest = new XMLHttpRequest();
-        httpRequest.open("GET", "saveExercise.php?exerciseId=" + exerciseId, true);
-        httpRequest.send();
-    }
-
-    //function that submits the form when user makes a sorting selection 
-    function submitForm() {
-        document.getElementById("exerciseSortForm").submit();
+            // Make an AJAX request to the server to save the exercise to the library using saveExercise.php
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.open("GET", "saveExercise.php?exerciseId=" + exerciseId, true);
+            httpRequest.send();
         }
+
+        //function for deleting exercise for admins
+        function deleteExercise(exerciseId) {
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.open("GET", "deleteExercise.php?exerciseId=" + exerciseId, true);
+            httpRequest.send();
+            //Refreshes the page, so that delete will be shown 
+            setTimeout(function() {
+                location.reload();
+            }, 100);
+        }
+
+
+
+
+
+        //function that submits the form when user makes a sorting selection 
+        function submitForm() {
+            document.getElementById("exerciseSortForm").submit();
+            }
     </script>
 
 </body>

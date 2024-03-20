@@ -35,6 +35,7 @@ $username = $_SESSION['username'];
                 <a href="../exerciseLibrary.php">Exercise Library</a>
                 <a href="../SignUpPages/adminAccountCreate.php">Create an Admin Account</a>
                 <a href="../createDatabase.php">Create the database</a>
+                <a href="logout.php">Sign out </a>
             </nav>
         </div>
     </header>

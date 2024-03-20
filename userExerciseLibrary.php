@@ -3,6 +3,15 @@ session_start();
 
 // Grabs the username of the logged-in user
 $userID = $_SESSION['user_id'];
+
+$username = $_SESSION['username'];
+
+//checks if user signed in or not
+//If not sends back to home, so that they can log in
+if($username === null){
+    header("Location: HomePages/unloggedHome.html");
+ }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +37,7 @@ $userID = $_SESSION['user_id'];
                 <a href="userDashboard.php">My Profile</a>
                 <a href="myPlan.php">My Plan</a>
                 <a href="communityPage.php">Community</a>
+                <a href="logout.php">Sign out </a>
             </nav>
         </div>
     </header>
@@ -66,6 +76,7 @@ $userID = $_SESSION['user_id'];
                     echo "<p><b>Number of days</b>: " . $row["Days"] . "</p>";
                     echo "<p><b>Number of sets:</b> " . $row["Sets"] . "</p>";
                     echo "<p><b>Descripton:</b> " . $row["Description"] . "</p>";
+                    echo "<button onclick= 'deleteExercise(" . $row['ExerciseID'] . ")'>Delete this Exercise</button>";
                     echo "</div>";
                 }
             } else {
@@ -78,6 +89,18 @@ $userID = $_SESSION['user_id'];
 
         </div>
     </main>
+    <script>
+        //function for deleting exercise for admins
+        function deleteExercise(exerciseId) {
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.open("GET", "deleteUserExercise.php?exerciseId=" + exerciseId, true);
+            httpRequest.send();
+            //Refreshes the page, so that delete will be shown 
+            setTimeout(function() {
+                location.reload();
+            }, 100);
+        }
+        </script>
 
 </body>
 </html>
