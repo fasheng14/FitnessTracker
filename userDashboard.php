@@ -53,7 +53,7 @@ if (!$result) {
                 <a href="myPlan.php">My Plan</a>
                 <a href="communityPage.php">Community</a>
                 <a href="exerciseLibrary.php">Exercise Library</a>
-                <a href="signIn.php" id="signOutLink">Sign Out</a>
+                <a href="logout.php">Sign out </a>
             </nav>
         </div>
     </header>
