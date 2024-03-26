@@ -8,11 +8,11 @@ if(isset($_SESSION['user_id'])) {
     session_destroy();
 
     // Redirect the user to the sign-in page
-    header("Location: signin.php");
+    header("Location: index.php");
     exit();
 } else {
     // If not logged in, redirect them to the sign-in page
-    header("Location: signin.php");
+    header("Location: index.php");
     exit();
 }
 ?>
