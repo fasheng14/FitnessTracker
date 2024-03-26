@@ -12,7 +12,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die ("Connection failed: " . $conn->connect_error);
 }
 
 // Get the current day of the week (1 for Monday, 2 for Tuesday, etc.)
@@ -26,12 +26,13 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if (!$result) {
-    die("Error executing query: " . $conn->error);
+    die ("Error executing query: " . $conn->error);
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,9 +43,13 @@ if (!$result) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
-        <h1>Fitness Tracker</h1>
+        <a class="logo" href="HomePages/loggedHome.php">
+            <img src="images/fitnessLogo.png" width="100px">
+        </a>
+
         <h1>Performance Hub</h1>
         <!-- Navigation between site pages  -->
         <div class="dropDown">
@@ -128,20 +133,20 @@ if (!$result) {
     <!-- JavaScript libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-       $(document).ready(function() {
+        $(document).ready(function () {
             // Event listener for the "Sign Out" link
-            $("#signOutLink").click(function(event) {
+            $("#signOutLink").click(function (event) {
                 event.preventDefault(); // Prevent the default action of the link
 
                 // Make an AJAX request to the signOutProcess.php file
                 $.ajax({
                     url: "signOutProcess.php",
                     method: "GET",
-                    success: function(response) {
+                    success: function (response) {
                         // Handle success, such as redirecting the user to the sign-in page
                         window.location.href = "signIn.php";
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         // Handle errors
                         console.error(xhr.responseText);
                     }
@@ -154,9 +159,9 @@ if (!$result) {
                     url: 'loadGoalsFromDatabase.php',
                     type: 'GET',
                     dataType: 'json',
-                    success: function(data) {
+                    success: function (data) {
                         // Iterate through each goal
-                        data.forEach(function(goal) {
+                        data.forEach(function (goal) {
                             switch (goal.Category) {
                                 case 'weekly':
                                     // Append a new paragraph for each weekly goal
@@ -175,7 +180,7 @@ if (!$result) {
                             }
                         });
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('Error loading goals for dashboard:', status, error);
                     }
                 });
@@ -190,7 +195,7 @@ if (!$result) {
                     url: 'loadBodyStats.php',
                     type: 'GET',
                     dataType: 'json',
-                    success: function(data) {
+                    success: function (data) {
                         // Check if data is empty
                         if (data.length > 0) {
                             // Extract the first row of data (assuming there's only one row per user)
@@ -207,7 +212,7 @@ if (!$result) {
                             $('#currentBodyStat').append('<p>No body stats available.</p>');
                         }
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('Error loading body stats:', status, error);
                     }
                 });
@@ -218,6 +223,7 @@ if (!$result) {
         });
     </script>
 </body>
+
 </html>
 
 <?php
