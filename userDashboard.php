@@ -1,6 +1,16 @@
 <?php
 session_start(); // Start the session
 
+// Check if user_id is set in session
+if (!isset($_SESSION["user_id"])) {
+    // Redirect to the sign-in page or handle the situation accordingly
+    header("Location: signIn.php");
+    exit; // Stop further execution
+}
+
+// Assign user_id to a variable
+$userID = $_SESSION["user_id"];
+
 // Database configuration
 $servername = "localhost";
 $username = "root";
@@ -28,6 +38,30 @@ $result = $stmt->get_result();
 if (!$result) {
     die("Error executing query: " . $conn->error);
 }
+
+// Initialize $userWeight variable
+$userWeight = null;
+
+// Query to fetch the user's weight from the database
+$sql_select_user_weight = "SELECT Weight FROM BodyStats WHERE UserID = ?";
+$stmt_weight = $conn->prepare($sql_select_user_weight);
+$stmt_weight->bind_param("i", $_SESSION['user_id']);
+$stmt_weight->execute();
+$result_weight = $stmt_weight->get_result();
+
+// Check if the query returned any rows
+if ($result_weight->num_rows > 0) {
+    // Fetch the user's weight
+    $userWeight = $result_weight->fetch_assoc()['Weight'];
+}
+
+// Query to fetch the total exercise duration for the current day from the database
+$sql_select_total_exercise_duration = "SELECT SUM(Duration) AS TotalDuration FROM CustomWorkouts WHERE DayOfWeek = ? AND UserID = ?";
+$stmt_duration = $conn->prepare($sql_select_total_exercise_duration);
+$stmt_duration->bind_param("si", $currentDayOfWeek, $_SESSION['user_id']);
+$stmt_duration->execute();
+$result_duration = $stmt_duration->get_result();
+$totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
 ?>
 
 <!DOCTYPE html>
@@ -91,12 +125,21 @@ if (!$result) {
 
             <!-- Daily Report item box  -->
             <div class="item" id="dailyReport">
-                <h3>Daily Report</h3>
-                <p>Date: [Today's Date]</p>
-                <p>Weight: [User's Weight] lb</p>
-                <p>Caloric Intake: [Calories Consumed] kcal</p>
-                <p>Exercise Duration: [Total Exercise Duration] mins</p>
-                <p>Water Intake: [Water Consumed] ml</p>
+                <h3 class="report-title">Daily Report</h3>
+                <div class="report-info">
+                    <div class="report-item">
+                        <span class="item-label">Date:</span>
+                        <span class="item-value"><?php echo date("Y-m-d"); ?></span>
+                    </div>
+                    <div class="report-item">
+                        <span class="item-label">Weight:</span>
+                        <span class="item-value"><?php echo $userWeight . ' lb'; ?></span>
+                    </div>
+                    <div class="report-item">
+                        <span class="item-label">Exercise Duration:</span>
+                        <span class="item-value"><?php echo $totalExerciseDuration; ?> mins</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Goals item box -->

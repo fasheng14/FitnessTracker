@@ -207,7 +207,7 @@ footer {
 }
 
 .sender-message {
-    background-color: #cfe7ff; /* Light blue background */
+    background-color: #cfe7ff; 
     color: #000; 
     padding: 8px;
     border-radius: 8px;
@@ -249,8 +249,8 @@ footer {
 /* Style for the user heading */
 .user-heading {
     font-weight: bold;
-    margin-bottom: 10px; /* Adjust spacing as needed */
-    color: black; /* Adjust color as needed */
+    margin-bottom: 10px; 
+    color: black; 
 }
 
 
