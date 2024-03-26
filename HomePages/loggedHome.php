@@ -23,10 +23,7 @@ $username = $_SESSION['username'];
 <body>
 
     <header>
-        <a class="logo" href="loggedHome.php">
-            <img src="../images/fitnessLogo.png" width="100px">
-        </a>
-        <h1 style="font-size: 2em;">Magncreo</h1>
+        <h1 style="font-size: 2em;">Fitness Tracker App</h1>
 
         <!-- Navigation between site pages  -->
         <div class="dropDown">

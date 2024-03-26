@@ -8,9 +8,9 @@ $isAdmin = $_SESSION['isAdmin'];
 
 //checks if user signed in or not
 //If not sends back to home, so that they can log in
-if ($username === null) {
-    header("Location: HomePages/unloggedHome.html");
-}
+if($username === null){
+   header("Location: HomePages/unloggedHome.html");
+} 
 ?>
 
 
@@ -30,10 +30,7 @@ if ($username === null) {
 
 <body>
     <header>
-        <a class="logo" href="HomePages/loggedHome.php">
-            <img src="images/fitnessLogo.png" width="100px">
-        </a>
-        <h1>Exercise Library</h1>
+        <h1>Fitness Tracker</h1>
         <div class="dropDown">
             <button class="dropButton">Menu</button>
             <nav class="dropContent">
@@ -47,6 +44,7 @@ if ($username === null) {
     </header>
 
     <main>
+        <h2>Exercise Library</h2>
         <!--adds a nav for users to view their saved exercises -->
         <div class="options-container">
             <a href="addExercise.php" class="addLibrary">Add exercise to library</a><br>
@@ -77,11 +75,11 @@ if ($username === null) {
             $conn = new mysqli($servername, $username, $password, $dbname);
 
             if ($conn->connect_error) {
-                die ("Connection failed: " . $conn->connect_error);
+                die("Connection failed: " . $conn->connect_error);
             }
 
             //Checks if the exercises was sorted, if not defaults to all from the database
-            $sort = isset ($_GET['exerciseSort']) ? $_GET['exerciseSort'] : 'all';
+            $sort = isset($_GET['exerciseSort']) ? $_GET['exerciseSort'] : 'all';
 
             // Fetches exercises from the database based on sorting option selected 
             if ($sort == 'all') {
@@ -137,7 +135,7 @@ if ($username === null) {
             httpRequest.open("GET", "deleteExercise.php?exerciseId=" + exerciseId, true);
             httpRequest.send();
             //Refreshes the page, so that delete will be shown 
-            setTimeout(function () {
+            setTimeout(function() {
                 location.reload();
             }, 100);
         }
@@ -149,7 +147,7 @@ if ($username === null) {
         //function that submits the form when user makes a sorting selection 
         function submitForm() {
             document.getElementById("exerciseSortForm").submit();
-        }
+            }
     </script>
 
 </body>

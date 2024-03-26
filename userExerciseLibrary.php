@@ -8,9 +8,9 @@ $username = $_SESSION['username'];
 
 //checks if user signed in or not
 //If not sends back to home, so that they can log in
-if ($username === null) {
+if($username === null){
     header("Location: HomePages/unloggedHome.html");
-}
+ }
 
 ?>
 <!DOCTYPE html>
@@ -29,10 +29,7 @@ if ($username === null) {
 
 <body>
     <header>
-        <a class="logo" href="HomePages/loggedHome.php">
-            <img src="images/fitnessLogo.png" width="100px">
-        </a>
-        <h1>Personal Exercise Library</h1>
+        <h1>Fitness Tracker</h1>
         <div class="dropDown">
             <button class="dropButton">Menu</button>
             <nav class="dropContent">
@@ -46,6 +43,7 @@ if ($username === null) {
     </header>
 
     <main>
+        <h2>Personal Exercise Library</h2>
         <a href="exerciseLibrary.php" class="addLibrary">All Exercises</a>
         <div class="container">
             <?php
@@ -58,7 +56,7 @@ if ($username === null) {
             $conn = new mysqli($servername, $username, $password, $dbname);
 
             if ($conn->connect_error) {
-                die ("Connection failed: " . $conn->connect_error);
+                die("Connection failed: " . $conn->connect_error);
             }
 
             // Fetch exercises from the user's library
@@ -98,12 +96,11 @@ if ($username === null) {
             httpRequest.open("GET", "deleteUserExercise.php?exerciseId=" + exerciseId, true);
             httpRequest.send();
             //Refreshes the page, so that delete will be shown 
-            setTimeout(function () {
+            setTimeout(function() {
                 location.reload();
             }, 100);
         }
-    </script>
+        </script>
 
 </body>
-
 </html>

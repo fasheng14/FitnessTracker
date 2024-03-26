@@ -15,9 +15,7 @@
 
     <body>
         <header>
-            <a class="logo" href="HomePages/loggedHome.php">
-                <img src="images/fitnessLogo.png" width="100px">
-            </a>
+            <h1>Fitness Tracker</h1>
             <h1>Community Page</h1>
 
             <!-- Navigation between site pages  -->
