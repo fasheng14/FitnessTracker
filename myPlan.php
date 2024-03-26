@@ -8,7 +8,6 @@ if (!isset($_SESSION["user_id"])) {
     exit; // Stop further execution
 }
 
-
 $userID = $_SESSION["user_id"];
 ?>
 <!DOCTYPE html>
@@ -40,7 +39,6 @@ $userID = $_SESSION["user_id"];
                 <a href="userDashboard.php">My Dashboard</a>
                 <a href="communityPage.php">Community</a>
                 <a href="exerciseLibrary.php">Exercise Library</a>
-                <a href="logout.php">Sign out </a>
             </nav>
         </div>
 
@@ -131,41 +129,6 @@ $userID = $_SESSION["user_id"];
                             <label for="duration">Duration:</label>
                             <input type="number" id="duration" name="duration"><br><br>
                             <button type="submit">Add Custom Workout</button>
-                        </form>
-
-                        <!-- Form for choosing from library (initially hidden) -->
-                        <form id="personalLibraryForm" class="hidden" action="personalLibraryProcess.php" method="post">
-                        <label for="dayOfWeek">Day of the Week:</label>
-                            <select id="dayOfWeek" name="dayOfWeek">
-                                <option value="Monday">Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                                <option value="Saturday">Saturday</option>
-                                <option value="Sunday">Sunday</option>
-                            </select>><br><br>
-
-                            <!-- Grabs from their saved library -->
-                            <label for="exercise">Saved Exercises: </label>
-                                <select id="exercise" name="exercise">
-                                    <option value="">Select</option>
-                                </select><br><br>
-
-                            <!--Allows user to custimze aspects of the workout -->
-                            <!--We can edit the exercise library database entry to include this information -->
-                            <!--For the user, currently it takes the exercise name and the recomended number of sets -->
-                            <!--And fills that in for the user automatically -->
-                            <label for="reps">Reps:</label>
-                            <input type="number" id="reps" name="reps"><br><br>
-                            <label for="weight">Weight:</label>
-                            <input type="number" id="weight" name="weight"><br><br>
-                            <label for="distance">Distance:</label>
-                            <input type="number" id="distance" name="distance"><br><br>
-                            <label for="duration">Duration:</label>
-                            <input type="number" id="duration" name="duration"><br><br>
-                            <button type="submit">Add from Library</button>
-
                         </form>
 
                         <!-- Rest Day Form (initially hidden) -->
@@ -286,7 +249,7 @@ $userID = $_SESSION["user_id"];
 
             // Select exercise library option
             $(".selectExerciseLibrary").click(function() {
-                $("#personalLibraryForm").toggleClass("hidden");
+                console.log("Exercise library selected");
             });
 
             // Select no workout option
@@ -302,11 +265,6 @@ $userID = $_SESSION["user_id"];
             // Hide custom workout form when other options are clicked
             $(".selectExerciseLibrary, .selectNoWorkout").click(function() {
                 $("#customWorkoutForm").addClass("hidden");
-            });
-
-            // Hide Library Workout Form when other optons are clicked
-            $(".selectCustomWorkout, .selectNoWorkout").click(function() {
-                $("#personalLibraryForm").addClass("hidden");
             });
 
             // Select rest day option
@@ -419,63 +377,6 @@ $userID = $_SESSION["user_id"];
                 });
             });
         });
-
-        // Load Saved workouts
-        function loadSavedExercises() {
-                $.ajax({
-                    url: 'loadSavedExercises.php',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        var selectOptions = $('#exercise');
-                        selectOptions.empty();
-                        selectOptions.append($('<option>', {
-                            value: '',
-                            text: 'Select'
-                        }));
-                        //Puts in the saved exercise name as an option
-                        $.each(data, function(index, exercise) {
-                            selectOptions.append($('<option>', {
-                                value: exercise.ExerciseID,
-                                text: exercise.ExerciseName
-                    }));
-                });
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error loading personal library options:', status, error);
-                    } 
-                });
-            }
-
-            loadSavedExercises();
-
-            // Handle submission of  Library Exercise form
-            $("#libraryExerciseForm").submit(function(event) {
-                event.preventDefault(); 
-
-                // Serialize the form data
-                var formData = $(this).serialize();
-
-                
-                $.ajax({
-                    url: 'personalLibraryProcess.php',
-                    type: 'POST',
-                    data: formData,
-                    success: function(response) {
-                        
-                        loadCustomWorkouts();
-
-                        
-                        $("#libraryExerciseForm")[0].reset();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error submitting Library Exercise form:', status, error);
-                    }
-                });
-            });
-
-
-        
     </script>
 
 

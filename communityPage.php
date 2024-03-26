@@ -25,7 +25,6 @@
                     <a href="myPlan.php">My Plan</a>
                     <a href="userDashboard.php">My Dashboard</a>
                     <a href="exerciseLibrary.php">Exercise Library</a>
-                    <a href="logout.php">Sign out </a>
                 </nav>
             </div>
         </header>

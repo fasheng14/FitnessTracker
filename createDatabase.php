@@ -96,17 +96,6 @@ CREATE TABLE ExerciseLibrary (
     Rating INT NULL
 )";
 
-//Table for exercise saved by user table
-// Can be used to import
-$sql_create_userExerciseLibrary_table = "
-CREATE TABLE userExerciseLibrary (
-    UserID INT,
-    ExerciseID INT,
-    FOREIGN KEY (UserID) REFERENCES User(UserID),
-    FOREIGN KEY (ExerciseID) REFERENCES ExerciseLibrary(ExerciseID)
-)";
-
-
 $sql_create_nutritionlog_table = "
 CREATE TABLE NutritionLog (
     LogID INT PRIMARY KEY,
@@ -167,6 +156,26 @@ CREATE TABLE BodyStats (
     FOREIGN KEY (UserID) REFERENCES User(UserID)
 )";
 
+$sql_create_conversations_table = "
+CREATE TABLE Conversations (
+    ConversationID INT AUTO_INCREMENT PRIMARY KEY,
+    User1ID INT,
+    User2ID INT,
+    FOREIGN KEY (User1ID) REFERENCES User(UserID),
+    FOREIGN KEY (User2ID) REFERENCES User(UserID)
+)";
+
+$sql_create_messages_table = "
+CREATE TABLE Messages (
+    MessageID INT AUTO_INCREMENT PRIMARY KEY,
+    ConversationID INT,
+    SenderID INT,
+    Message TEXT,
+    Timestamp DATETIME,
+    FOREIGN KEY (ConversationID) REFERENCES Conversations(ConversationID),
+    FOREIGN KEY (SenderID) REFERENCES User(UserID)
+)";
+
 
 // Execute SQL statements to create tables
 $conn->query($sql_create_user_table);
@@ -174,12 +183,14 @@ $conn->query($sql_create_activitylog_table);
 $conn->query($sql_create_workoutplans_table);
 $conn->query($sql_create_planexercises_table);
 $conn->query($sql_create_exerciselibrary_table);
-$conn->query($sql_create_userExerciseLibrary_table);
 $conn->query($sql_create_nutritionlog_table);
 $conn->query($sql_create_progresstracking_table);
 $conn->query($sql_create_customworkouts_table);
 $conn->query($sql_create_goals_table);
 $conn->query($sql_create_bodystats_table);
+$conn->query($sql_create_conversations_table);
+$conn->query($sql_create_messages_table);
+
 
 
 
