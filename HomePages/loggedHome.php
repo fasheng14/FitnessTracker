@@ -45,7 +45,15 @@ $conn->close();
 
 <body>
     <header>
-        <h1 style="font-size: 2em;">Fitness Tracker App</h1>
+        
+        <div class="homeLogo">
+            <!-- Image -->
+            <img src="graphic/fitnessLogo.png" alt="MagnCreo Logo" class="logo">
+        </div>
+        
+        <div class="name">
+            <h1 style="font-size: 2em;">MagnCreo</h1>
+        </div>
 
         <!-- Navigation between site pages  -->
         <div class="dropDown">
@@ -65,8 +73,8 @@ $conn->close();
     <!-- Main Content  -->
     <main>
 
-        <h2 style="margin-bottom: 20px;">Welcome
-            <?php echo $username ?> to our Fitness Tracker
+        <h2 style="margin-bottom: 20px;">welcome back
+            <?php echo $username ?> 
         </h2>
         <div class="info-container"></div>
         <!-- Messaging tool button -->
@@ -96,6 +104,71 @@ $conn->close();
                 <button id="addContactBtn">Add Friend</button>
             </div>
     </main>
+
+    <div class="signUpContainer">
+
+        <div class="signUpImageBox">
+        <!-- Image -->
+            <img src="graphic/signUpImage.webp" alt="Sign Up Image" class="signup-image">
+        </div>
+
+        <div class="signUpInfo">
+
+            <div class="motivational-piece">
+                <h3></h3>
+                <p>Start planning your customized workout plan</p>
+            </div>
+
+            <!-- Sign Up Button -->
+            <a href="../myPlan.php" class="signup-button">GO TO YOUR PLAN</a>
+
+        
+        </div>
+    </div>
+
+    <div class="signUpContainer">
+
+        <div class="signUpInfo">
+
+            <div class="motivational-piece">
+                <h3></h3>
+                <p>Explore and Contribute to MagnCreo's Exercise Library</p>
+            </div>
+
+            <!-- EL Button -->
+            <a href="../exerciseLibrary.php" class="signup-button">Exercise Library</a>
+
+
+        </div>
+
+        <div class="signUpImageBox">
+        <!-- Image -->
+            <img src="graphic/signUpImage.webp" alt="Sign Up Image" class="signup-image">
+        </div>
+    </div>
+
+    <div class="signUpContainer">
+
+        <div class="signUpImageBox">
+        <!-- Image -->
+            <img src="graphic/signUpImage.webp" alt="Sign Up Image" class="signup-image">
+        </div>
+
+        <div class="signUpInfo">
+
+            <div class="motivational-piece">
+                <h3></h3>
+                <p>Connect with the MagnCreo community for support, tips, and to explore the health journeys of others.</p>
+            </div>
+
+            <!-- Sign Up Button -->
+            <a href="../communityPage.php" class="signup-button">Join the MagnCreo Community</a>
+
+        
+        </div>
+    </div>
+
+  
 
     <footer></footer>
     <script>
@@ -134,7 +207,7 @@ $conn->close();
 
                     // Display the name of the user at the top of the conversation
                     var userHeading = document.createElement("div");
-                    userHeading.textContent = user; // Modify as needed
+                    userHeading.textContent = user; 
                     userHeading.classList.add("message-sender");
                     userHeading.classList.add("user-heading"); // Add the user-heading class
                     conversationContainer.appendChild(userHeading);

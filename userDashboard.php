@@ -78,8 +78,13 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
 </head>
 <body>
     <header>
-        <h1>Fitness Tracker</h1>
-        <h1>Performance Hub</h1>
+         <div class="homeLogo">
+            <!-- Image -->
+            <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" class="logo">
+        </div>
+        <div class="name">
+            <h1 style="font-size: 2em;">Performance Hub</h1>
+        </div>
         <!-- Navigation between site pages  -->
         <div class="dropDown">
             <button class="dropButton">Menu</button>
@@ -147,7 +152,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                 <h3>Goals</h3>
                 <h4>Weekly Workout Goals</h4>
                 <p id="weeklyWorkoutGoal"></p>
-                <h4>Weight Loass Goals</h4>
+                <h4>Weight Loss Goals</h4>
                 <p id="weightLossGoal"> </p>
                 <h4>Nutrition Goals</h4>
                 <p id="nutritionalGoal"> </p>
@@ -174,7 +179,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
        $(document).ready(function() {
             // Event listener for the "Sign Out" link
             $("#signOutLink").click(function(event) {
-                event.preventDefault(); // Prevent the default action of the link
+                event.preventDefault(); 
 
                 // Make an AJAX request to the signOutProcess.php file
                 $.ajax({
@@ -236,7 +241,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                     success: function(data) {
                         // Check if data is empty
                         if (data.length > 0) {
-                            // Extract the first row of data (assuming there's only one row per user)
+                            // Extract the first row of data
                             var bodyStats = data[0];
 
                             // Populate the HTML elements with body stats data

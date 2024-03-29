@@ -8,7 +8,6 @@ if (!isset($_SESSION["user_id"])) {
     exit; // Stop further execution
 }
 
-
 $userID = $_SESSION["user_id"];
 ?>
 <!DOCTYPE html>
@@ -33,7 +32,13 @@ $userID = $_SESSION["user_id"];
 
 <body>
     <header>
-        <h1>Fitness Tracker</h1>
+        <div class="homeLogo">
+            <!-- Image -->
+            <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" class="logo">
+        </div>
+        <div class="name">
+            <h1 style="font-size: 2em;">my plan</h1>
+        </div>
         <div class="dropDown">
             <button class="dropButton">Menu</button>
             <nav class="dropContent">
@@ -46,7 +51,6 @@ $userID = $_SESSION["user_id"];
 
     </header>
 
-    <h2>My Plan</h2>
     <main>
 
         <div class="container">
@@ -248,22 +252,10 @@ $userID = $_SESSION["user_id"];
                 </div>
 
 
-
-                <div class="box" id="nutrition">
-                    <h3>Nutrition Information</h3>
-                    <form id="nutritionForm">
-                        <label for="calorieIn">Caloric Intake:</label>
-                        <input type="number" id="cal" name="cal" required><br><br>
-                        <label for="calorieOut">Calories Burned:</label>
-                        <input type="number" id="calOut" name="calOut"><br><br>
-                        <button type="submit">Update Nutrition</button>
-                    </form>
-                </div>
-
-
             </div>
         </div>
 
+        
 
     </main>
 

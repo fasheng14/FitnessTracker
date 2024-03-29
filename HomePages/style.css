@@ -5,15 +5,34 @@ header {
     background-color: black; 
     color: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center; 
     padding: 15px;
+    text-align: center;
 }
 
+.name{
+    display: flex;
+    align-items: center;
+    margin-right: 550px;
+}
+
+.logo{
+    width: 20%;
+    height: auto;
+}
+
+.homeLogo {
+    display: flex;
+    align-items: center;
+}
+
+
 h1, h2{
-    margin: 0; 
+     
     font-family: 'Mate SC', serif; 
     font-weight: normal;
+    font-size: 40px;
 }
 
 body {
@@ -319,4 +338,130 @@ footer {
 .back-button:hover {
     background-color: #b637a1;
     color: white;
+}
+
+
+/*Sign Up Home Page*/
+
+.signUpContainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    height: 20%;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #f9f9f9;
+}
+
+.signup-image {
+    width: 100%;
+    height: 100%;
+}
+
+.signUpImageBox{
+    width: 50%;
+}
+
+.signUpInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.signup-button {
+    background-color:#473d87 ;
+    color: white;
+    padding: 15px 30px;
+    width: 50%;
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.signup-button:hover {
+    background-color: #b637a1;
+}
+
+.create-account-link {
+    color: #666;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.motivational-piece {
+    border-radius: 10px;
+    width: 80%;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.motivational-piece h3 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.motivational-piece p {
+    color: #666;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+
+/*info box style*/
+
+/* Website Info Container */
+.websiteInfoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 100px;
+}
+
+/* Website Info */
+.websiteInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Website Details */
+.websiteDetails {
+    text-align: center;
+    width: 50%;
+}
+
+/* Info Image */
+.infoImage {
+    
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoImage img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.info {
+    color: #666;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    width: 80%;
+    margin-left: 40px;
 }

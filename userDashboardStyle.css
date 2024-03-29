@@ -8,10 +8,26 @@ header {
     padding: 15px;
 }
 
+.logo{
+    width: 20%;
+    height: auto;
+}
+
+.homeLogo {
+    display: flex;
+    align-items: center;
+}
+
+.name{
+    display: flex;
+    align-items: center;
+    margin-right: 550px;
+}
+
 h1, h2{
     margin: 0; 
     font-family: 'Mate SC', serif; 
-    font-weight: normal;
+    font-weight: bold;
 
 }
 
@@ -83,7 +99,7 @@ h4{
 
 /* Styling for <p> elements */
 p {
-    color: white; 
+    color: black; 
     margin: 10px 0; 
     font-family: 'Mate SC', serif; 
     font-size: 25px; 
@@ -144,7 +160,7 @@ th, td {
 
 #dailyReport{
     background-color: #fff;
-    border: 1px solid #ddd;
+    border: 10px solid  #473d87;
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 10px;
@@ -180,4 +196,11 @@ th, td {
     color: #555;
 }
 
+#currentBodyStat{
+    text-align: center;
+}
 
+#goals{
+    text-align: center;
+    text-decoration: solid;
+}
