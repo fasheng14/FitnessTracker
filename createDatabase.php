@@ -167,24 +167,14 @@ CREATE TABLE BodyStats (
     FOREIGN KEY (UserID) REFERENCES User(UserID)
 )";
 
-$sql_create_conversations_table = "
-CREATE TABLE Conversations (
-    ConversationID INT AUTO_INCREMENT PRIMARY KEY,
-    User1ID INT,
-    User2ID INT,
-    FOREIGN KEY (User1ID) REFERENCES User(UserID),
-    FOREIGN KEY (User2ID) REFERENCES User(UserID)
-)";
 
 $sql_create_messages_table = "
 CREATE TABLE Messages (
     MessageID INT AUTO_INCREMENT PRIMARY KEY,
-    ConversationID INT,
-    SenderID INT,
+    UserID INT,
     Message TEXT,
-    Timestamp DATETIME,
-    FOREIGN KEY (ConversationID) REFERENCES Conversations(ConversationID),
-    FOREIGN KEY (SenderID) REFERENCES User(UserID)
+    Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
 )";
 
 
@@ -200,6 +190,8 @@ $conn->query($sql_create_progresstracking_table);
 $conn->query($sql_create_customworkouts_table);
 $conn->query($sql_create_goals_table);
 $conn->query($sql_create_bodystats_table);
+$conn->query($sql_create_messages_table);
+
 
 
 

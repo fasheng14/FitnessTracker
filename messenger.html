@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger</title>
+    <link rel="stylesheet" type="text/css" href="messenger.css">
+</head>
+<body>
+    <!-- Messaging button -->
+    <button class="messenger-button" onclick="toggleMessenger()">Messenger</button>
+
+    <!-- Messenger container -->
+    <div class="msg-container" id="msg-container">
+         <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
+        <div class="msg-area" id="msg-area"></div>
+        <div class="bottom">
+            <input type="text" name="msginput" class="msginput" id="msginput" placeholder="Enter your message here ... (Press enter to send message)">
+        </div>
+    </div>
+
+    <script src="messenger.js"></script>
+</body>
+</html>

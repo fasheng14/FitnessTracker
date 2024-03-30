@@ -18,6 +18,8 @@ $userID = $_SESSION["user_id"];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Plan</title>
     <link rel="stylesheet" type="text/css" href="myPlanStyle.css">
+    <link rel="stylesheet" type="text/css" href="messenger.css">
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +44,8 @@ $userID = $_SESSION["user_id"];
         <div class="dropDown">
             <button class="dropButton">Menu</button>
             <nav class="dropContent">
-                <a href="userDashboard.php">My Dashboard</a>
+                <a href="HomePages/loggedHome.php">Home</a>
+                <a href="userDashboard.php">Dashboard</a>
                 <a href="communityPage.php">Community</a>
                 <a href="exerciseLibrary.php">Exercise Library</a>
                 <a href="logout.php">Sign out </a>
@@ -255,9 +258,22 @@ $userID = $_SESSION["user_id"];
             </div>
         </div>
 
-        
+         <!-- Messaging button -->
+            <button class="messenger-button" onclick="toggleMessenger()">Messenger</button>
+
+        <!-- Messenger container -->
+        <div class="msg-container" id="msg-container">
+            <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
+            <div class="msg-area" id="msg-area"></div>
+            <div class="bottom">
+                <input type="text" name="msginput" class="msginput" id="msginput" placeholder="Enter your message here ... (Press enter to send message)">
+            </div>
+        </div>
 
     </main>
+
+    <!-- Link to the JavaScript file for messaging component -->
+    <script src="messenger.js"></script>
 
     <script>
         $(document).ready(function() {

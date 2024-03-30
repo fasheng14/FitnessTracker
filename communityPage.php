@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Community Page</title>
         <link rel="stylesheet" type="text/css" href="communityStyle.css">
+        <link rel="stylesheet" type="text/css" href="messenger.css">
+
 
         <!-- Mate SC front from Google Fonts-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,19 +17,24 @@
 
     <body>
         <header>
-            <h1>Fitness Tracker</h1>
-            <h1>Community Page</h1>
-
-            <!-- Navigation between site pages  -->
+            <div class="homeLogo">
+                <!-- Image -->
+                <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" class="logo">
+            </div>
+            <div class="name">
+                <h1 style="font-size: 2em;">MagnCreo Community</h1>
+            </div>
             <div class="dropDown">
                 <button class="dropButton">Menu</button>
                 <nav class="dropContent">
+                    <a href="HomePages/loggedHome.php">Home</a>
+                    <a href="userDashboard.php">Dashboard</a>
                     <a href="myPlan.php">My Plan</a>
-                    <a href="userDashboard.php">My Dashboard</a>
                     <a href="exerciseLibrary.php">Exercise Library</a>
                     <a href="logout.php">Sign out </a>
                 </nav>
             </div>
+
         </header>
 
         <!-- Main Content  -->
@@ -80,7 +87,20 @@
                     </div>
                 </div>
             </div>
+
+            <button class="messenger-button" onclick="toggleMessenger()">Messenger</button>
+
+            <!-- Messenger container -->
+            <div class="msg-container" id="msg-container">
+                <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
+                <div class="msg-area" id="msg-area"></div>
+                <div class="bottom">
+                    <input type="text" name="msginput" class="msginput" id="msginput" placeholder="Enter your message here ... (Press enter to send message)">
+                </div>
+            </div>
         </main>
+            <!-- Link to the JavaScript file for messaging component -->
+            <script src="messenger.js"></script>
     </body>
 
     <footer>

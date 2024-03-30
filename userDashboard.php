@@ -71,6 +71,8 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
     <link rel="stylesheet" type="text/css" href="userDashboardStyle.css">
+    <!-- Link to the CSS file for messaging component -->
+    <link rel="stylesheet" type="text/css" href="messenger.css">
     <!-- Mate SC front from Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -89,6 +91,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
         <div class="dropDown">
             <button class="dropButton">Menu</button>
             <nav class="dropContent">
+                <a href="HomePages/loggedHome.php">Home</a>
                 <a href="myPlan.php">My Plan</a>
                 <a href="communityPage.php">Community</a>
                 <a href="exerciseLibrary.php">Exercise Library</a>
@@ -99,6 +102,8 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
 
     <!-- Main Content  -->
     <main>
+
+
         <div class="container">
             <!-- Today's workout item box  -->
             <div class="item" id="todayWorkout">
@@ -168,10 +173,25 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                 <p id="longestWorkout"></p>
             </div>
         </div>
+
+        <!-- Messaging button -->
+        <button class="messenger-button" onclick="toggleMessenger()">Messenger</button>
+
+        <!-- Messenger container -->
+        <div class="msg-container" id="msg-container">
+            <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
+            <div class="msg-area" id="msg-area"></div>
+            <div class="bottom">
+                <input type="text" name="msginput" class="msginput" id="msginput" placeholder="Enter your message here ... (Press enter to send message)">
+            </div>
+        </div>
     </main>
 
     <footer>
     </footer>
+
+    <!-- Link to the JavaScript file for messaging component -->
+    <script src="messenger.js"></script>
 
     <!-- JavaScript libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -22,6 +22,7 @@ if($username === null){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercise Library</title>
     <link rel="stylesheet" type="text/css" href="exerciseLibraryStyles.css">
+    <link rel="stylesheet" type="text/css" href="messenger.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,19 +30,26 @@ if($username === null){
 </head>
 
 <body>
-    <header>
-        <h1>Fitness Tracker</h1>
-        <div class="dropDown">
-            <button class="dropButton">Menu</button>
-            <nav class="dropContent">
-                <a href="HomePages/loggedHome.php">Home Page</a>
-                <a href="userDashboard.php">My Profile</a>
-                <a href="myPlan.php">My Plan</a>
-                <a href="communityPage.php">Community</a>
-                <a href="logout.php">Sign out </a>
-            </nav>
-        </div>
-    </header>
+            <header>
+                <div class="homeLogo">
+                    <!-- Image -->
+                    <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" class="logo">
+                </div>
+                <div class="name">
+                    <h1 style="font-size: 2em;">exercise library</h1>
+                </div>
+                <div class="dropDown">
+                    <button class="dropButton">Menu</button>
+                    <nav class="dropContent">
+                        <a href="HomePages/loggedHome.php">Home</a>
+                        <a href="userDashboard.php">Dashboard</a>
+                        <a href="myPlan.php">My Plan</a>
+                        <a href="communityPage.php">Community</a>
+                        <a href="logout.php">Sign out </a>
+                    </nav>
+                </div>
+
+            </header>
 
     <main>
         <h2>Exercise Library</h2>
@@ -119,7 +127,21 @@ if($username === null){
             ?>
 
         </div>
+        <!-- Include the messaging button here -->
+        <button class="messenger-button" onclick="toggleMessenger()">Messenger</button>
+
+        <!-- Messenger container -->
+        <div class="msg-container" id="msg-container">
+            <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
+            <div class="msg-area" id="msg-area"></div>
+            <div class="bottom">
+                <input type="text" name="msginput" class="msginput" id="msginput" placeholder="Enter your message here ... (Press enter to send message)">
+            </div>
+        </div>
     </main>
+
+    <!-- Link to the JavaScript file for messaging component -->
+    <script src="messenger.js"></script>
     <script>
         //function for the user saving an exercise
         function saveExercise(exerciseId) {
