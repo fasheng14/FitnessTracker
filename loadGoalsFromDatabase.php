@@ -2,15 +2,22 @@
 // Start session
 session_start();
 
-// Check if UserID is set in session
+// Same thing as loading Body stats
+//Makes so this works when requested for other users other than the logged in one
 if (!isset($_SESSION["user_id"])) {
     // Redirect to login page or handle the situation accordingly
    header("Location: signIn.php"); // Change the URL to your login page
    exit;
 }
 
+if (isset($_GET['userID'])) {
+    // 'userID' GET variable exists
+    $userID = $_GET['userID'];
+}
+else{
 // Get UserID from session
-$userID = $_SESSION["user_id"];
+    $userID = $_SESSION["user_id"];
+}
 
 // Database configuration
 $servername = "localhost";
