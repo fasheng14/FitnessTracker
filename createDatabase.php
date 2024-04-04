@@ -66,7 +66,7 @@ CREATE TABLE ActivityLog (
 
 $sql_create_workoutplans_table = "
 CREATE TABLE WorkoutPlans (
-    PlanID INT PRIMARY KEY,
+    PlanID INT AUTO_INCREMENT PRIMARY KEY,
     UserID INT,
     PlanName VARCHAR(255),
     Description TEXT,
@@ -177,6 +177,17 @@ CREATE TABLE Messages (
     FOREIGN KEY (UserID) REFERENCES User(UserID)
 )";
 
+//New Table for the friends list
+//A user can add one user to their own list
+$sql_create_friends_table = "
+CREATE TABLE friends (
+    FriendshipID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID1 INT,
+    UserID2 INT,
+    FOREIGN KEY (UserID1) REFERENCES User(UserID),
+    FOREIGN KEY (UserID2) REFERENCES User(UserID)
+)";
+
 
 // Execute SQL statements to create tables
 $conn->query($sql_create_user_table);
@@ -191,6 +202,7 @@ $conn->query($sql_create_customworkouts_table);
 $conn->query($sql_create_goals_table);
 $conn->query($sql_create_bodystats_table);
 $conn->query($sql_create_messages_table);
+$conn->query($sql_create_friends_table);
 
 
 
