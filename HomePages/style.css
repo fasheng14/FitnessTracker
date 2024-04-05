@@ -5,34 +5,18 @@ header {
     background-color: black; 
     color: white;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center; 
-    padding: 15px;
-    text-align: center;
-}
-
-.name{
-    display: flex;
-    align-items: center;
-    margin-right: 550px;
+    padding: 10px;
 }
 
 .logo{
-    width: 20%;
-    height: auto;
+    float: left;
 }
-
-.homeLogo {
-    display: flex;
-    align-items: center;
-}
-
 
 h1, h2{
-     
     font-family: 'Mate SC', serif; 
     font-weight: normal;
-    font-size: 40px;
 }
 
 body {
@@ -61,6 +45,7 @@ p {
 }
 
 .dropButton{
+    width: 150px;
     border-radius: 0%;
     background-color: #473d87;
     color: white;
@@ -72,7 +57,7 @@ p {
     display: none;
     position: absolute;
     background-color: white;
-    min-width: 160px;
+    min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }

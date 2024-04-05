@@ -8,9 +8,9 @@ $username = $_SESSION['username'];
 
 //checks if user signed in or not
 //If not sends back to home, so that they can log in
-if($username === null){
+if ($username === null) {
     header("Location: HomePages/unloggedHome.html");
- }
+}
 
 ?>
 <!DOCTYPE html>
@@ -37,6 +37,7 @@ if($username === null){
                 <a href="userDashboard.php">My Profile</a>
                 <a href="myPlan.php">My Plan</a>
                 <a href="communityPage.php">Community</a>
+                <a href="aboutUs.php">About Us</a>
                 <a href="logout.php">Sign out </a>
             </nav>
         </div>
@@ -96,11 +97,12 @@ if($username === null){
             httpRequest.open("GET", "deleteUserExercise.php?exerciseId=" + exerciseId, true);
             httpRequest.send();
             //Refreshes the page, so that delete will be shown 
-            setTimeout(function() {
+            setTimeout(function () {
                 location.reload();
             }, 100);
         }
-        </script>
+    </script>
 
 </body>
+
 </html>

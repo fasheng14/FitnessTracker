@@ -22,11 +22,6 @@ h1 {
     font-size: 40px;
 }
 
-h1, h2, h3 {
-    text-align: center;
-    color: white;
-}
-
 /* Drop down menu*/
 .dropDown{
     position: relative;
@@ -81,35 +76,51 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.container {
+h1, h2, h3 {
+    text-align: center;
+    color: white;
+}
+
+.aboutText{
+    color: white;
+    font-size: 1.3em;
+    line-height: 1.3;
+    letter-spacing: 1px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.container{
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr;
-    gap: 10px;
-    padding: 1%;
-    margin-bottom: 10;
-    height: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 3fr;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
-.itemContainer {
-    padding: 20px;
-    border-radius: 10px;
+.item2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.team{
     background-color: black;
-    
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin: 2%;
+    margin-top: 0%;
+    height: 400px;
+    width: 250px;
 }
 
-#recommendation{
-    height: fit-content;
+.teamPic{
+    margin: auto;
 }
 
-#workout{
-    height: fit-content;
-}
-
-.item {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #6c6e86;
+.teamName{
+    font-size: 1.75em;
 }

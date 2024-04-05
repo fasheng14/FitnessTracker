@@ -34,12 +34,12 @@ $userID = $_SESSION["user_id"];
 
 <body>
     <header>
-        <div class="homeLogo">
+        <a class="logo" href="HomePages/loggedHome.php">
             <!-- Image -->
-            <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" class="logo">
-        </div>
+            <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" width="150px">
+        </a>
         <div class="name">
-            <h1 style="font-size: 2em;">my plan</h1>
+            <h1 style="font-size: 3em;">My Plan</h1>
         </div>
         <div class="dropDown">
             <button class="dropButton">Menu</button>
@@ -48,6 +48,7 @@ $userID = $_SESSION["user_id"];
                 <a href="userDashboard.php">Dashboard</a>
                 <a href="communityPage.php">Community</a>
                 <a href="exerciseLibrary.php">Exercise Library</a>
+                <a href="aboutUs.php">About Us</a>
                 <a href="logout.php">Sign out </a>
             </nav>
         </div>
@@ -142,7 +143,7 @@ $userID = $_SESSION["user_id"];
 
                         <!-- Form for choosing from library (initially hidden) -->
                         <form id="personalLibraryForm" class="hidden" action="personalLibraryProcess.php" method="post">
-                        <label for="dayOfWeek">Day of the Week:</label>
+                            <label for="dayOfWeek">Day of the Week:</label>
                             <select id="dayOfWeek" name="dayOfWeek">
                                 <option value="Monday">Monday</option>
                                 <option value="Tuesday">Tuesday</option>
@@ -155,9 +156,9 @@ $userID = $_SESSION["user_id"];
 
                             <!-- Grabs from their saved library -->
                             <label for="exercise">Saved Exercises: </label>
-                                <select id="exercise" name="exercise">
-                                    <option value="">Select</option>
-                                </select><br><br>
+                            <select id="exercise" name="exercise">
+                                <option value="">Select</option>
+                            </select><br><br>
 
                             <!--Allows user to custimze aspects of the workout -->
                             <!--We can edit the exercise library database entry to include this information -->
@@ -197,7 +198,7 @@ $userID = $_SESSION["user_id"];
                     <h3>Current Body and Performance Stats</h3>
                     <form id="currentBodyStatsForm" action="updatePerformanceStats.php" method="post">
                         <label for="weight">Weight (lb):</label>
-                        <input type="number" id="weight" name="weight" ><br><br>
+                        <input type="number" id="weight" name="weight"><br><br>
                         <label for="benchPR">Bench Press Personal Record (lb):</label>
                         <input type="number" id="benchPR" name="benchPR"><br><br>
 
@@ -258,15 +259,16 @@ $userID = $_SESSION["user_id"];
             </div>
         </div>
 
-         <!-- Messaging button -->
-            <button class="messenger-button" onclick="toggleMessenger()">Messenger</button>
+        <!-- Messaging button -->
+        <button class="messenger-button" onclick="toggleMessenger()">Messenger</button>
 
         <!-- Messenger container -->
         <div class="msg-container" id="msg-container">
             <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
             <div class="msg-area" id="msg-area"></div>
             <div class="bottom">
-                <input type="text" name="msginput" class="msginput" id="msginput" placeholder="Enter your message here ... (Press enter to send message)">
+                <input type="text" name="msginput" class="msginput" id="msginput"
+                    placeholder="Enter your message here ... (Press enter to send message)">
             </div>
         </div>
 
@@ -276,54 +278,54 @@ $userID = $_SESSION["user_id"];
     <script src="messenger.js"></script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Show or hide workout options
-            $(".add-workout-section h3").click(function() {
+            $(".add-workout-section h3").click(function () {
                 $(".workout-options").toggleClass("show");
             });
 
             // Prevent workout options from closing when clicking inside
-            $(".workout-options").on("click", function(event) {
+            $(".workout-options").on("click", function (event) {
                 event.stopPropagation();
             });
 
             // Close workout options when clicking outside
-            $(document).on("click", function() {
+            $(document).on("click", function () {
                 $(".workout-options").removeClass("show");
             });
 
             // Select exercise library option
-            $(".selectExerciseLibrary").click(function() {
+            $(".selectExerciseLibrary").click(function () {
                 $("#personalLibraryForm").toggleClass("hidden");
             });
 
             // Select no workout option
-            $(".selectNoWorkout").click(function() {
+            $(".selectNoWorkout").click(function () {
                 console.log("No workout selected");
             });
 
             // Select custom workout option
-            $(".selectCustomWorkout").click(function() {
+            $(".selectCustomWorkout").click(function () {
                 $("#customWorkoutForm").toggleClass("hidden");
             });
 
             // Hide custom workout form when other options are clicked
-            $(".selectExerciseLibrary, .selectNoWorkout").click(function() {
+            $(".selectExerciseLibrary, .selectNoWorkout").click(function () {
                 $("#customWorkoutForm").addClass("hidden");
             });
 
             // Hide Library Workout Form when other optons are clicked
-            $(".selectCustomWorkout, .selectNoWorkout").click(function() {
+            $(".selectCustomWorkout, .selectNoWorkout").click(function () {
                 $("#personalLibraryForm").addClass("hidden");
             });
 
             // Select rest day option
-            $(".selectNoWorkout").click(function() {
+            $(".selectNoWorkout").click(function () {
                 $("#restDayForm").toggleClass("hidden");
             });
 
             // Handle options button to show dropdown content
-            $("#goalsBox").on("click", ".optionsButton", function(event) {
+            $("#goalsBox").on("click", ".optionsButton", function (event) {
                 event.stopPropagation();
                 var dropdownContent = $(this).next(".dropdown-content");
                 $(".dropdown-content").not(dropdownContent).removeClass("show");
@@ -331,25 +333,25 @@ $userID = $_SESSION["user_id"];
             });
 
             // Prevent dropdown from closing when clicking inside the dropdown
-            $(".dropdown-content").on("click", function(event) {
+            $(".dropdown-content").on("click", function (event) {
                 event.stopPropagation();
             });
 
             // Close dropdown when clicking outside the dropdown
-            $(document).on("click", function() {
+            $(document).on("click", function () {
                 $(".dropdown-content").removeClass("show");
             });
 
-            
+
             // Function to load goals
             function loadGoals() {
                 $.ajax({
                     url: 'loadGoalsFromDatabase.php',
                     type: 'GET',
                     dataType: 'json',
-                    success: function(data) {
+                    success: function (data) {
                         // Populate each goal list
-                        data.forEach(function(goal) {
+                        data.forEach(function (goal) {
                             switch (goal.Category) {
                                 case 'weekly':
                                     $('#weeklyGoalsList').append('<li>' + goal.GoalText + '</li>');
@@ -365,7 +367,7 @@ $userID = $_SESSION["user_id"];
                             }
                         });
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('Error loading goals:', status, error);
                     }
                 });
@@ -380,9 +382,9 @@ $userID = $_SESSION["user_id"];
                     url: 'loadCustomWorkouts.php',
                     type: 'GET',
                     dataType: 'json',
-                    success: function(data) {
+                    success: function (data) {
                         // Populate each day of the week with custom workouts
-                        data.forEach(function(workout) {
+                        data.forEach(function (workout) {
                             var dayOfWeek = workout.DayOfWeek;
                             var workoutName = workout.Name;
                             var workoutSets = workout.Sets;
@@ -390,10 +392,10 @@ $userID = $_SESSION["user_id"];
                             var workoutWeight = workout.Weight;
                             var workoutDistance = workout.Distance;
                             var workoutDuration = workout.Duration;
-                            $('#' + dayOfWeek + 'WorkoutList').append('<p>' + "Name: " + workoutName + ' ' + "Sets: " + workoutSets + ' ' + "Reps: " + workoutReps + ' ' +  "Weight: " + workoutWeight + ' ' + "Distance: " + workoutDistance + ' ' + "Duration: " + workoutDuration +'</p>');
+                            $('#' + dayOfWeek + 'WorkoutList').append('<p>' + "Name: " + workoutName + ' ' + "Sets: " + workoutSets + ' ' + "Reps: " + workoutReps + ' ' + "Weight: " + workoutWeight + ' ' + "Distance: " + workoutDistance + ' ' + "Duration: " + workoutDuration + '</p>');
                         });
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('Error loading custom workouts:', status, error);
                     }
                 });
@@ -403,7 +405,7 @@ $userID = $_SESSION["user_id"];
             loadCustomWorkouts();
 
             // Handle submission of custom workout form
-            $("#customWorkoutForm").submit(function(event) {
+            $("#customWorkoutForm").submit(function (event) {
                 event.preventDefault(); // Prevent the default form submission
 
                 // Serialize the form data
@@ -414,14 +416,14 @@ $userID = $_SESSION["user_id"];
                     url: 'customWorkoutProcess.php',
                     type: 'POST',
                     data: formData,
-                    success: function(response) {
+                    success: function (response) {
                         // Reload custom workouts after successfully adding a new one
                         loadCustomWorkouts();
 
                         // Reset the form
                         $("#customWorkoutForm")[0].reset();
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('Error submitting custom workout form:', status, error);
                     }
                 });
@@ -430,60 +432,60 @@ $userID = $_SESSION["user_id"];
 
         // Load Saved workouts
         function loadSavedExercises() {
-                $.ajax({
-                    url: 'loadSavedExercises.php',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        var selectOptions = $('#exercise');
-                        selectOptions.empty();
-                        selectOptions.append($('<option>', {
-                            value: '',
-                            text: 'Select'
-                        }));
-                        //Puts in the saved exercise name as an option
-                        $.each(data, function(index, exercise) {
-                            selectOptions.append($('<option>', {
-                                value: exercise.ExerciseID,
-                                text: exercise.ExerciseName
+            $.ajax({
+                url: 'loadSavedExercises.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    var selectOptions = $('#exercise');
+                    selectOptions.empty();
+                    selectOptions.append($('<option>', {
+                        value: '',
+                        text: 'Select'
                     }));
-                });
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error loading personal library options:', status, error);
-                    } 
-                });
-            }
-
-            loadSavedExercises();
-
-            // Handle submission of  Library Exercise form
-            $("#libraryExerciseForm").submit(function(event) {
-                event.preventDefault(); 
-
-                // Serialize the form data
-                var formData = $(this).serialize();
-
-                
-                $.ajax({
-                    url: 'personalLibraryProcess.php',
-                    type: 'POST',
-                    data: formData,
-                    success: function(response) {
-                        
-                        loadCustomWorkouts();
-
-                        
-                        $("#libraryExerciseForm")[0].reset();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error submitting Library Exercise form:', status, error);
-                    }
-                });
+                    //Puts in the saved exercise name as an option
+                    $.each(data, function (index, exercise) {
+                        selectOptions.append($('<option>', {
+                            value: exercise.ExerciseID,
+                            text: exercise.ExerciseName
+                        }));
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error loading personal library options:', status, error);
+                }
             });
+        }
+
+        loadSavedExercises();
+
+        // Handle submission of  Library Exercise form
+        $("#libraryExerciseForm").submit(function (event) {
+            event.preventDefault();
+
+            // Serialize the form data
+            var formData = $(this).serialize();
 
 
-        
+            $.ajax({
+                url: 'personalLibraryProcess.php',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+
+                    loadCustomWorkouts();
+
+
+                    $("#libraryExerciseForm")[0].reset();
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error submitting Library Exercise form:', status, error);
+                }
+            });
+        });
+
+
+
     </script>
 
 

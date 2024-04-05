@@ -17,12 +17,12 @@
 
     <body>
         <header>
-            <div class="homeLogo">
+            <a class="logo" href="HomePages/loggedHome.php">
                 <!-- Image -->
-                <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" class="logo">
-            </div>
+                <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" width="150px">
+            </a>
             <div class="name">
-                <h1 style="font-size: 2em;">MagnCreo Community</h1>
+                <h1 style="font-size: 3em;">MagnCreo Community</h1>
             </div>
             <div class="dropDown">
                 <button class="dropButton">Menu</button>
@@ -31,6 +31,7 @@
                     <a href="userDashboard.php">Dashboard</a>
                     <a href="myPlan.php">My Plan</a>
                     <a href="exerciseLibrary.php">Exercise Library</a>
+                    <a href="aboutUs.php">About Us</a>
                     <a href="logout.php">Sign out </a>
                 </nav>
             </div>
@@ -95,12 +96,13 @@
                 <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
                 <div class="msg-area" id="msg-area"></div>
                 <div class="bottom">
-                    <input type="text" name="msginput" class="msginput" id="msginput" placeholder="Enter your message here ... (Press enter to send message)">
+                    <input type="text" name="msginput" class="msginput" id="msginput"
+                        placeholder="Enter your message here ... (Press enter to send message)">
                 </div>
             </div>
         </main>
-            <!-- Link to the JavaScript file for messaging component -->
-            <script src="messenger.js"></script>
+        <!-- Link to the JavaScript file for messaging component -->
+        <script src="messenger.js"></script>
     </body>
 
     <footer>

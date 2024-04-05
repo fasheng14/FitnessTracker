@@ -47,14 +47,14 @@ $conn->close();
 
 <body>
     <header>
-        
-        <div class="homeLogo">
+
+        <div class="logo">
             <!-- Image -->
-            <img src="graphic/fitnessLogo.png" alt="MagnCreo Logo" class="logo">
+            <img src="graphic/fitnessLogo.png" alt="MagnCreo Logo" width="150px">
         </div>
-        
+
         <div class="name">
-            <h1 style="font-size: 2em;">MagnCreo</h1>
+            <h1 style="font-size: 3em;">MagnCreo</h1>
         </div>
 
         <!-- Navigation between site pages  -->
@@ -67,6 +67,7 @@ $conn->close();
                 <a href="../exerciseLibrary.php">Exercise Library</a>
                 <a href="../SignUpPages/adminAccountCreate.php">Create an Admin Account</a>
                 <a href="../createDatabase.php">Create the database</a>
+                <a href="../aboutUs.php">About Us</a>
                 <a href="../logout.php">Sign out </a>
             </nav>
         </div>
@@ -76,16 +77,16 @@ $conn->close();
     <main>
 
         <h2 style="margin-bottom: 20px;">welcome back
-            <?php echo $username ?> 
+            <?php echo $username ?>
         </h2>
         <div class="info-container"></div>
-       
+
     </main>
 
     <div class="signUpContainer">
 
         <div class="signUpImageBox">
-        <!-- Image -->
+            <!-- Image -->
             <img src="graphic/signUpImage.webp" alt="Sign Up Image" class="signup-image">
         </div>
 
@@ -99,7 +100,7 @@ $conn->close();
             <!-- Sign Up Button -->
             <a href="../myPlan.php" class="signup-button">GO TO YOUR PLAN</a>
 
-        
+
         </div>
     </div>
 
@@ -119,7 +120,7 @@ $conn->close();
         </div>
 
         <div class="signUpImageBox">
-        <!-- Image -->
+            <!-- Image -->
             <img src="graphic/signUpImage.webp" alt="Sign Up Image" class="signup-image">
         </div>
     </div>
@@ -127,7 +128,7 @@ $conn->close();
     <div class="signUpContainer">
 
         <div class="signUpImageBox">
-        <!-- Image -->
+            <!-- Image -->
             <img src="graphic/signUpImage.webp" alt="Sign Up Image" class="signup-image">
         </div>
 
@@ -135,13 +136,14 @@ $conn->close();
 
             <div class="motivational-piece">
                 <h3></h3>
-                <p>Connect with the MagnCreo community for support, tips, and to explore the health journeys of others.</p>
+                <p>Connect with the MagnCreo community for support, tips, and to explore the health journeys of others.
+                </p>
             </div>
 
             <!-- Sign Up Button -->
             <a href="../communityPage.php" class="signup-button">Join the MagnCreo Community</a>
 
-        
+
         </div>
     </div>
 
@@ -150,14 +152,15 @@ $conn->close();
 
     <!-- Messenger container -->
     <div class="msg-container" id="msg-container">
-         <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
+        <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
         <div class="msg-area" id="msg-area"></div>
         <div class="bottom">
-            <input type="text" name="msginput" class="msginput" id="msginput" placeholder="Enter your message here ... (Press enter to send message)">
+            <input type="text" name="msginput" class="msginput" id="msginput"
+                placeholder="Enter your message here ... (Press enter to send message)">
         </div>
     </div>
 
-  
+
 
     <footer></footer>
     <!-- Link to the JavaScript file for messaging component -->

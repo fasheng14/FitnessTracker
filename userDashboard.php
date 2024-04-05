@@ -66,6 +66,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,14 +79,15 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
-         <div class="homeLogo">
+        <a class="logo" href="HomePages/loggedHome.php">
             <!-- Image -->
-            <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" class="logo">
-        </div>
+            <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" width="150px">
+        </a>
         <div class="name">
-            <h1 style="font-size: 2em;">Performance Hub</h1>
+            <h1 style="font-size: 3em;">Performance Hub</h1>
         </div>
         <!-- Navigation between site pages  -->
         <div class="dropDown">
@@ -95,6 +97,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                 <a href="myPlan.php">My Plan</a>
                 <a href="communityPage.php">Community</a>
                 <a href="exerciseLibrary.php">Exercise Library</a>
+                <a href="aboutUs.php">About Us</a>
                 <a href="logout.php">Sign out </a>
             </nav>
         </div>
@@ -139,15 +142,21 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                 <div class="report-info">
                     <div class="report-item">
                         <span class="item-label">Date:</span>
-                        <span class="item-value"><?php echo date("Y-m-d"); ?></span>
+                        <span class="item-value">
+                            <?php echo date("Y-m-d"); ?>
+                        </span>
                     </div>
                     <div class="report-item">
                         <span class="item-label">Weight:</span>
-                        <span class="item-value"><?php echo $userWeight . ' lb'; ?></span>
+                        <span class="item-value">
+                            <?php echo $userWeight . ' lb'; ?>
+                        </span>
                     </div>
                     <div class="report-item">
                         <span class="item-label">Exercise Duration:</span>
-                        <span class="item-value"><?php echo $totalExerciseDuration; ?> mins</span>
+                        <span class="item-value">
+                            <?php echo $totalExerciseDuration; ?> mins
+                        </span>
                     </div>
                 </div>
             </div>
@@ -182,7 +191,8 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
             <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
             <div class="msg-area" id="msg-area"></div>
             <div class="bottom">
-                <input type="text" name="msginput" class="msginput" id="msginput" placeholder="Enter your message here ... (Press enter to send message)">
+                <input type="text" name="msginput" class="msginput" id="msginput"
+                    placeholder="Enter your message here ... (Press enter to send message)">
             </div>
         </div>
     </main>
@@ -196,20 +206,20 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
     <!-- JavaScript libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-       $(document).ready(function() {
+        $(document).ready(function () {
             // Event listener for the "Sign Out" link
-            $("#signOutLink").click(function(event) {
-                event.preventDefault(); 
+            $("#signOutLink").click(function (event) {
+                event.preventDefault();
 
                 // Make an AJAX request to the signOutProcess.php file
                 $.ajax({
                     url: "signOutProcess.php",
                     method: "GET",
-                    success: function(response) {
+                    success: function (response) {
                         // Handle success, such as redirecting the user to the sign-in page
                         window.location.href = "signIn.php";
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         // Handle errors
                         console.error(xhr.responseText);
                     }
@@ -222,9 +232,9 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                     url: 'loadGoalsFromDatabase.php',
                     type: 'GET',
                     dataType: 'json',
-                    success: function(data) {
+                    success: function (data) {
                         // Iterate through each goal
-                        data.forEach(function(goal) {
+                        data.forEach(function (goal) {
                             switch (goal.Category) {
                                 case 'weekly':
                                     // Append a new paragraph for each weekly goal
@@ -243,7 +253,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                             }
                         });
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('Error loading goals for dashboard:', status, error);
                     }
                 });
@@ -258,7 +268,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                     url: 'loadBodyStats.php',
                     type: 'GET',
                     dataType: 'json',
-                    success: function(data) {
+                    success: function (data) {
                         // Check if data is empty
                         if (data.length > 0) {
                             // Extract the first row of data
@@ -275,7 +285,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                             $('#currentBodyStat').append('<p>No body stats available.</p>');
                         }
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('Error loading body stats:', status, error);
                     }
                 });
@@ -286,6 +296,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
         });
     </script>
 </body>
+
 </html>
 
 <?php

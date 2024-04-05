@@ -1,33 +1,24 @@
 
+/* Header */
 header {
     background-color: black; 
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center; 
-    padding: 15px;
+    padding: 10px;
 }
 
 .logo{
-    width: 20%;
-    height: auto;
+    float: left;
 }
 
-.homeLogo {
-    display: flex;
-    align-items: center;
-}
 
-.name{
-    display: flex;
-    align-items: center;
-    margin-right: 550px;
-}
-
-h1 {
-    margin: 0; 
-    font-family: 'Mate SC';
+h1, h2{
+     
+    font-family: 'Mate SC', serif; 
     font-weight: normal;
+    font-size: 40px;
 }
 
 /* Drop down menu*/
@@ -37,6 +28,7 @@ h1 {
 }
 
 .dropButton{
+    width: 150px;
     border-radius: 0%;
     background-color: #473d87;
     color: white;
@@ -48,7 +40,7 @@ h1 {
     display: none;
     position: absolute;
     background-color: white;
-    min-width: 160px;
+    min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }

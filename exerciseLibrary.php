@@ -8,9 +8,9 @@ $isAdmin = $_SESSION['isAdmin'];
 
 //checks if user signed in or not
 //If not sends back to home, so that they can log in
-if($username === null){
-   header("Location: HomePages/unloggedHome.html");
-} 
+if ($username === null) {
+    header("Location: HomePages/unloggedHome.html");
+}
 ?>
 
 
@@ -30,29 +30,29 @@ if($username === null){
 </head>
 
 <body>
-            <header>
-                <div class="homeLogo">
-                    <!-- Image -->
-                    <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" class="logo">
-                </div>
-                <div class="name">
-                    <h1 style="font-size: 2em;">exercise library</h1>
-                </div>
-                <div class="dropDown">
-                    <button class="dropButton">Menu</button>
-                    <nav class="dropContent">
-                        <a href="HomePages/loggedHome.php">Home</a>
-                        <a href="userDashboard.php">Dashboard</a>
-                        <a href="myPlan.php">My Plan</a>
-                        <a href="communityPage.php">Community</a>
-                        <a href="logout.php">Sign out </a>
-                    </nav>
-                </div>
+    <header>
+        <a class="logo" href="HomePages/loggedHome.php">
+            <!-- Image -->
+            <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" width="150px">
+        </a>
+        <div class="name">
+            <h1 style="font-size: 3em;">Exercise Library</h1>
+        </div>
+        <div class="dropDown">
+            <button class="dropButton">Menu</button>
+            <nav class="dropContent">
+                <a href="HomePages/loggedHome.php">Home</a>
+                <a href="userDashboard.php">Dashboard</a>
+                <a href="myPlan.php">My Plan</a>
+                <a href="communityPage.php">Community</a>
+                <a href="aboutUs.php">About Us</a>
+                <a href="logout.php">Sign out </a>
+            </nav>
+        </div>
 
-            </header>
+    </header>
 
     <main>
-        <h2>Exercise Library</h2>
         <!--adds a nav for users to view their saved exercises -->
         <div class="options-container">
             <a href="addExercise.php" class="addLibrary">Add exercise to library</a><br>
@@ -135,7 +135,8 @@ if($username === null){
             <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
             <div class="msg-area" id="msg-area"></div>
             <div class="bottom">
-                <input type="text" name="msginput" class="msginput" id="msginput" placeholder="Enter your message here ... (Press enter to send message)">
+                <input type="text" name="msginput" class="msginput" id="msginput"
+                    placeholder="Enter your message here ... (Press enter to send message)">
             </div>
         </div>
     </main>
@@ -157,7 +158,7 @@ if($username === null){
             httpRequest.open("GET", "deleteExercise.php?exerciseId=" + exerciseId, true);
             httpRequest.send();
             //Refreshes the page, so that delete will be shown 
-            setTimeout(function() {
+            setTimeout(function () {
                 location.reload();
             }, 100);
         }
@@ -169,7 +170,7 @@ if($username === null){
         //function that submits the form when user makes a sorting selection 
         function submitForm() {
             document.getElementById("exerciseSortForm").submit();
-            }
+        }
     </script>
 
 </body>
