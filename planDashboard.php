@@ -98,9 +98,9 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
 </head>
 <body>
     <header>
-         <div class="homeLogo">
+         <div class="homeLogo" href="HomePages/loggedHome.php">
             <!-- Image -->
-            <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" class="logo">
+            <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" width="150px">
         </div>
         <div class="name">
             <h1 style="font-size: 2em;"><?echo $username?>'s Hub</h1>
