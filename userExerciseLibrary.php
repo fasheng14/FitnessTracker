@@ -8,9 +8,9 @@ $username = $_SESSION['username'];
 
 //checks if user signed in or not
 //If not sends back to home, so that they can log in
-if ($username === null) {
+if($username === null){
     header("Location: HomePages/unloggedHome.html");
-}
+ }
 
 ?>
 <!DOCTYPE html>
@@ -37,7 +37,6 @@ if ($username === null) {
                 <a href="userDashboard.php">My Profile</a>
                 <a href="myPlan.php">My Plan</a>
                 <a href="communityPage.php">Community</a>
-                <a href="aboutUs.php">About Us</a>
                 <a href="logout.php">Sign out </a>
             </nav>
         </div>
@@ -61,8 +60,9 @@ if ($username === null) {
             }
 
             // Fetch exercises from the user's library
-            $sql_fetch_exercises = "SELECT e.* FROM userExerciseLibrary uel
-                                    INNER JOIN ExerciseLibrary e ON uel.ExerciseID = e.ExerciseID
+            $sql_fetch_exercises = "SELECT e.*, pw.* FROM userExerciseLibrary uel
+                                    LEFT JOIN ExerciseLibrary e ON uel.ExerciseID = e.ExerciseID
+                                    LEFT JOIN PresetWorkouts pw ON uel.PresetWorkoutID = pw.PresetWorkoutID
                                     WHERE uel.UserID = $userID";
 
             $result = $conn->query($sql_fetch_exercises);
@@ -72,12 +72,20 @@ if ($username === null) {
                 // Displays the results in a separate container for each exercise
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='exercise-container'>";
-                    echo "<h3>" . $row["ExerciseName"] . "</h3>";
-                    echo "<p><b>Muscle Group:</b> " . $row["MuscleGroup"] . "</p>";
-                    echo "<p><b>Number of days</b>: " . $row["Days"] . "</p>";
-                    echo "<p><b>Number of sets:</b> " . $row["Sets"] . "</p>";
-                    echo "<p><b>Descripton:</b> " . $row["Description"] . "</p>";
-                    echo "<button onclick= 'deleteExercise(" . $row['ExerciseID'] . ")'>Delete this Exercise</button>";
+                    // Check if the exercise is from ExerciseLibrary or PresetWorkouts
+                    if ($row["ExerciseID"] !== null) {
+                        echo "<h3>" . $row["ExerciseName"] . "</h3>";
+                        echo "<p><b>Muscle Group:</b> " . $row["MuscleGroup"] . "</p>";
+                        echo "<p><b>Number of days</b>: " . $row["Days"] . "</p>";
+                        echo "<p><b>Number of sets:</b> " . $row["Sets"] . "</p>";
+                        echo "<p><b>Description:</b> " . $row["Description"] . "</p>";
+                    } elseif ($row["PresetWorkoutID"] !== null) {
+                        echo "<h3>" . $row["PresetExerciseName"] . "</h3>";
+                        echo "<p><b>Muscle Group:</b> " . $row["MuscleGroup"] . "</p>";
+                        echo "<p><b>Number of days</b>: " . $row["Days"] . "</p>";
+                        echo "<p><b>Number of sets:</b> " . $row["Sets"] . "</p>";
+                        echo "<p><b>Description:</b> " . $row["Description"] . "</p>";
+                    }
                     echo "</div>";
                 }
             } else {
@@ -97,12 +105,11 @@ if ($username === null) {
             httpRequest.open("GET", "deleteUserExercise.php?exerciseId=" + exerciseId, true);
             httpRequest.send();
             //Refreshes the page, so that delete will be shown 
-            setTimeout(function () {
+            setTimeout(function() {
                 location.reload();
             }, 100);
         }
-    </script>
+        </script>
 
 </body>
-
 </html>

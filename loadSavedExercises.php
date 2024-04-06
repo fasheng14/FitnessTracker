@@ -23,8 +23,18 @@ if ($conn->connect_error) {
 }
 
 // Fetch exercises from the user's library
-$sql_fetch_exercises = "SELECT e.* FROM userExerciseLibrary uel
-                        INNER JOIN ExerciseLibrary e ON uel.ExerciseID = e.ExerciseID
+$sql_fetch_exercises = "SELECT 
+                            e.ExerciseID AS ExerciseID,
+                            e.ExerciseName AS ExerciseName
+                        FROM userExerciseLibrary uel
+                        LEFT JOIN ExerciseLibrary e ON uel.ExerciseID = e.ExerciseID
+                        WHERE uel.UserID = $userID
+                        UNION
+                        SELECT 
+                            pw.PresetWorkoutID AS ExerciseID,
+                            pw.PresetExerciseName AS ExerciseName
+                        FROM userExerciseLibrary uel
+                        LEFT JOIN PresetWorkouts pw ON uel.PresetWorkoutID = pw.PresetWorkoutID
                         WHERE uel.UserID = $userID";
 
 $result = $conn->query($sql_fetch_exercises);

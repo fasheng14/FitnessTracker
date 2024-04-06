@@ -127,6 +127,48 @@ if ($username === null) {
             ?>
 
         </div>
+        <!-- Display preset workouts -->
+        <?php if ($sort !== 'all') : ?>
+        <h2>MagnCreo Exercises</h2>
+        <div class="container">
+            <?php
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            // Fetch preset workouts from the database based on selected muscle group
+            $sql_fetch_workouts = "SELECT * FROM PresetWorkouts WHERE MuscleGroup = '$sort'";
+
+            $result = $conn->query($sql_fetch_workouts);
+
+            // Check if there are any preset workouts
+            if ($result->num_rows > 0) {
+                // Display preset workouts
+                while ($row = $result->fetch_assoc()) {
+                    echo "<div class='exercise-container'>";
+                    echo "<h3>" . $row["PresetExerciseName"] . "</h3>";
+                    echo "<p><b>Muscle Group:</b> " . $row["MuscleGroup"] . "</p>";
+                    echo "<p><b>Number of days</b>: " . $row["Days"] . "</p>";
+                    echo "<p><b>Number of sets:</b> " . $row["Sets"] . "</p>";
+                    echo "<p><b>Description:</b> " . $row["Description"] . "</p>";
+                    echo "<p><b>Video:</b> <a href='" . $row["DemoVideoLink"] . "' target='_blank'>" . $row["DemoVideoLink"] . "</a></p>";
+                    echo "<button onclick='savePresetWorkout(" . $row['PresetWorkoutID'] . ")'>Save this Workout</button>";
+
+                    echo "</div>";
+                }
+            } else {
+                echo "No preset workouts found for this muscle group";
+            }
+
+            // Close the database connection
+            $conn->close();
+            ?>
+        </div>
+        <?php endif; ?>
+
         <!-- Include the messaging button here -->
         <button class="messenger-button" onclick="toggleMessenger()">Messenger</button>
 
@@ -149,6 +191,14 @@ if ($username === null) {
             // Make an AJAX request to the server to save the exercise to the library using saveExercise.php
             var httpRequest = new XMLHttpRequest();
             httpRequest.open("GET", "saveExercise.php?exerciseId=" + exerciseId, true);
+            httpRequest.send();
+        }
+
+        //function for saving preset workouts
+        function savePresetWorkout(presetWorkoutId) {
+            // Make an AJAX request to the server to save the preset workout to the library
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.open("GET", "savePresetWorkouts.php?presetWorkoutId=" + presetWorkoutId, true);
             httpRequest.send();
         }
 

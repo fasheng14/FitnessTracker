@@ -102,22 +102,36 @@ $sql_create_userExerciseLibrary_table = "
 CREATE TABLE userExerciseLibrary (
     UserID INT,
     ExerciseID INT,
+    PresetWorkoutID INT,
     FOREIGN KEY (UserID) REFERENCES User(UserID),
-    FOREIGN KEY (ExerciseID) REFERENCES ExerciseLibrary(ExerciseID)
+    FOREIGN KEY (ExerciseID) REFERENCES ExerciseLibrary(ExerciseID),
+    FOREIGN KEY (PresetWorkoutID) REFERENCES PresetWorkouts(PresetWorkoutID)
+
 )";
 
-
-$sql_create_nutritionlog_table = "
-CREATE TABLE NutritionLog (
-    LogID INT PRIMARY KEY,
-    UserID INT,
-    Date DATE,
-    MealType VARCHAR(20),
-    FoodItem VARCHAR(255),
-    Quantity DECIMAL(6,2),
-    CaloricContent DECIMAL(6,2),
-    FOREIGN KEY (UserID) REFERENCES User(UserID)
+//Workouts that are available on MagnCreo 
+$sql_create_presetWorkouts_table = "
+CREATE TABLE PresetWorkouts (
+    PresetWorkoutID INT AUTO_INCREMENT PRIMARY KEY,
+    PresetExerciseName VARCHAR(255) NOT NULL,
+    MuscleGroup VARCHAR(50) NOT NULL,
+    Days INT NOT NULL,
+    Sets INT NOT NULL,
+    Description TEXT,
+    DemoVideoLink VARCHAR(255) NOT NULL
 )";
+
+// Insert initial preset workouts data 
+$sql_insert_presetWorkouts_data = "
+INSERT INTO PresetWorkouts (PresetExerciseName, MuscleGroup, Days, Sets, Description, DemoVideoLink)
+VALUES
+('Jumping Jacks', 'Full-body', 3, 3, 'Jumping jacks exercise for full-body workout.', 'https://www.youtube.com/watch?v=iSSAk4XCsRA'),
+('Squats', 'Legs', 3, 3, 'Basic squat exercise targeting the leg muscles.', 'https://www.youtube.com/watch?v=l83R5PblSMA'),
+('Push-Ups', 'Arms', 3, 3, 'Classic push-up exercise targeting the arms and chest muscles.', 'https://www.youtube.com/watch?v=_l3ySVKYVJ8'),
+('Bench Press', 'Chest', 3, 3, 'Bench press exercise for chest muscle development.', 'https://www.youtube.com/watch?v=SCVCLChPQFY'),
+('Pull-Ups', 'Back', 3, 3, 'Pull-up exercise targeting the back muscles.', 'https://www.youtube.com/watch?v=aAggnpPyR6E')
+";
+
 
 $sql_create_progresstracking_table = "
 CREATE TABLE ProgressTracking (
@@ -141,6 +155,14 @@ CREATE TABLE CustomWorkouts (
     Weight DECIMAL(5,2),
     Distance DECIMAL(5,2),
     Duration INT,
+    DayOfWeek VARCHAR(20),
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
+)";
+
+$sql_create_restday_table = "
+CREATE TABLE RestDays (
+    RestDayID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT,
     DayOfWeek VARCHAR(20),
     FOREIGN KEY (UserID) REFERENCES User(UserID)
 )";
@@ -195,15 +217,16 @@ $conn->query($sql_create_activitylog_table);
 $conn->query($sql_create_workoutplans_table);
 $conn->query($sql_create_planexercises_table);
 $conn->query($sql_create_exerciselibrary_table);
+$conn->query($sql_create_presetWorkouts_table);
 $conn->query($sql_create_userExerciseLibrary_table);
-$conn->query($sql_create_nutritionlog_table);
 $conn->query($sql_create_progresstracking_table);
 $conn->query($sql_create_customworkouts_table);
 $conn->query($sql_create_goals_table);
 $conn->query($sql_create_bodystats_table);
 $conn->query($sql_create_messages_table);
 $conn->query($sql_create_friends_table);
-
+$conn->query($sql_create_restday_table);
+$conn->query($sql_insert_presetWorkouts_data);
 
 
 
