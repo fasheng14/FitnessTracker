@@ -14,10 +14,10 @@ if ($conn->connect_error) {
 }
 
 // Get goal text from request
-$goalText = $_POST['goalText'];
+$goalID = $_POST['goalID'];
 
-// SQL to delete goal from database
-$sql_delete_goal = "DELETE FROM Goals WHERE goalText='$goalText'";
+// SQL to delete goal from database using goal id
+$sql_delete_goal = "DELETE FROM Goals WHERE GoalID='$goalID'";
 
 if ($conn->query($sql_delete_goal) === TRUE) {
     echo "Goal deleted successfully";

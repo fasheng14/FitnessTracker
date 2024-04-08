@@ -354,23 +354,27 @@ $(document).ready(function() {
             success: function(data) {
                 // Populate each goal list
                 data.forEach(function(goal) {
+                    console.log(goal);
                     switch (goal.Category) {
                         case 'weekly':
-                            $('#weeklyGoalsList').append('<li>' + goal.GoalText + '<button class="goaldelete-btn">Delete</button></li>');
+                            $('#weeklyGoalsList').append('<li data-goal-id="' + goal.GoalID + '">' + goal.GoalText + '<button class="goaldelete-btn">Delete</button></li>');
                                 $('.goaldelete-btn').click(function() {
-                                    $(this).parent().remove(); // Removes the workout item when delete button is clicked     
+                                    $(this).parent().remove(); // Removes the workout item when delete button is clicked
+                                        
                                 });
                             break;
                         case 'nutrition':
-                            $('#nutritionGoalsList').append('<li>' + goal.GoalText + '<button class="goaldelete-btn">Delete</button></li>');
+                            $('#nutritionGoalsList').append('<li data-goal-id="' + goal.GoalID + '">' + goal.GoalText + '<button class="goaldelete-btn">Delete</button></li>');
                                 $('.goaldelete-btn').click(function() {
-                                    $(this).parent().remove(); // Removes the workout item when delete button is clicked     
+                                    $(this).parent().remove(); // Removes the workout item when delete button is clicked
+                                           
                                 });
                             break;
                         case 'weightLoss':
-                            $('#weightLossGoalsList').append('<li>' + goal.GoalText + '<button class="goaldelete-btn">Delete</button></li>');
+                            $('#weightLossGoalsList').append('<li data-goal-id="' + goal.GoalID + '">' + goal.GoalText + '<button class="goaldelete-btn">Delete</button></li>');
                                 $('.goaldelete-btn').click(function() {
-                                    $(this).parent().remove(); // Removes the workout item when delete button is clicked     
+                                    $(this).parent().remove(); // Removes the workout item when delete button is clicked
+                                         
                                 });
                             break;
                         default:
@@ -395,6 +399,8 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data) {
                 // Populate each day of the week with custom workouts
+                // Adds data attribute so that id of the workout can be used on listener function
+                console.log(data);
                 data.forEach(function(workout) {
                     var dayOfWeek = workout.DayOfWeek;
                     var workoutName = workout.Name;
@@ -404,7 +410,7 @@ $(document).ready(function() {
                     var workoutWeight = workout.Weight;
                     var workoutDistance = workout.Distance;
                     var workoutDuration = workout.Duration;
-                    $('#' + dayOfWeek + 'WorkoutList').append('<p>' + "Name: " + workoutName + ' ' + "Sets: " + workoutSets + ' ' + "Reps: " + workoutReps + ' ' +  "Weight: " + workoutWeight + ' ' + "Distance: " + workoutDistance + ' ' + "Duration: " + workoutDuration +' <button class="delete-btn">Delete</button></p>');
+                    $('#' + dayOfWeek + 'WorkoutList').append('<p data-workout-id="' + workout.CustomWorkoutID + '">' + "Name: " + workoutName + ' ' + "Sets: " + workoutSets + ' ' + "Reps: " + workoutReps + ' ' +  "Weight: " + workoutWeight + ' ' + "Distance: " + workoutDistance + ' ' + "Duration: " + workoutDuration +' <button class="delete-btn" id="workout-delete">Delete</button></p>');
                     // Handling delete button click event
                     $('.delete-btn').click(function() {
                         $(this).parent().remove(); // Removes the workout item when delete button is clicked
@@ -457,10 +463,11 @@ $(document).ready(function() {
             type: 'GET',
             dataType: 'json',
             success: function(data) {
+                console.log(data);
                 // Populate each day of the week with rest days
                 data.forEach(function(restDay) {
-                    var dayOfWeek = restDay;
-                    $('#' + dayOfWeek + 'WorkoutList').append('<p>Rest Day <button class="delete-btn">Delete</button></p>');
+                    var dayOfWeek = restDay.DayOfWeek;
+                    $('#' + dayOfWeek + 'WorkoutList').append('<p data-restday-id="' + restDay.RestDayID + '">Rest Day <button class="delete-btn" id="restday-delete">Delete</button></p>');
                     // Handling delete button click event
                     $('.delete-btn').click(function() {
                         $(this).parent().remove(); // Removes the workout item when delete button is clicked
@@ -503,6 +510,48 @@ $(document).ready(function() {
             }
         });
     });
+
+    //Handle deletion of goals
+    $(document).on('click', '.goaldelete-btn', function() {
+    var goalID = $(this).closest('li').data('goal-id'); 
+    $.ajax({
+        url: 'deleteGoalProcess.php',
+        type: 'POST',
+        data: {goalID: goalID},
+        success: function(response) {
+            console.log("Workout Deleted");
+        }
+    })
+    
+});
+
+    //Handle deletion of workouts
+    $(document).on('click', '#workout-delete', function() {
+        var workoutID = $(this).closest('p').data('workout-id');
+        console.log(workoutID);
+        $.ajax({
+            url: 'deleteCustomWorkout.php',
+            type: 'POST',
+            data: {workoutID: workoutID},
+            success: function(response) {
+                console.log("Workout Deleted")
+            }
+        })
+    })
+
+    //Handle deletion of rest days
+    $(document).on('click', '#restday-delete', function() {
+        var restDayID = $(this).closest('p').data('restday-id');
+        console.log(restDayID);
+        $.ajax({
+            url: 'deleteRestDay.php',
+            type: "POST",
+            data: {restDayID: restDayID},
+            success: function(response) {
+                console.log("RestDay deleted")
+            }
+        })
+    })
 
 });
 
@@ -559,6 +608,8 @@ function loadSavedExercises() {
             }
         });
     });
+
+    
 
 
 

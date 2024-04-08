@@ -9,7 +9,9 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 
-$customWorkoutID = $_POST['workoutID'];
+$restdayID = $_POST['restDayID'];
+
+print_r($_POST);
 
 
 
@@ -27,18 +29,18 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Prepare SQL statement to delete the custom workout from the database
-$sql_delete_workout = "DELETE FROM CustomWorkouts WHERE CustomWorkoutID = ?";
-$stmt = $conn->prepare($sql_delete_workout);
-$stmt->bind_param("i", $customWorkoutID);
+// Prepare SQL statement to delete the rest day
+$sql_delete_restday = "DELETE FROM RestDays WHERE RestDayID = ?";
+$stmt = $conn->prepare($sql_delete_restday);
+$stmt->bind_param("i", $restdayID);
 
 // Execute the statement
 if ($stmt->execute()) {
-    // Workout deleted successfully
+    // restday deleted successfully
     echo json_encode(array("success" => true));
 } else {
-    // Error occurred while deleting workout
-    echo json_encode(array("success" => false, "error" => "Failed to delete workout."));
+    // Error occurred while deleting rest day
+    echo json_encode(array("success" => false, "error" => "Failed to delete rest day."));
 }
 
 // Close statement and connection

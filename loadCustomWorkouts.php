@@ -25,7 +25,8 @@ if ($conn->connect_error) {
 $userID = $_SESSION["user_id"];
 
 // Prepare SQL statement to fetch workouts from the database for the logged-in user
-$sql_select_workouts = "SELECT Name, DayOfWeek, Sets, Reps, Weight, Distance, Duration FROM CustomWorkouts WHERE UserID = ?";
+//Added customeWorkoutId to be selected, so that it can be there for later to delete 
+$sql_select_workouts = "SELECT CustomWorkoutID, Name, DayOfWeek, Sets, Reps, Weight, Distance, Duration FROM CustomWorkouts WHERE UserID = ?";
 $stmt = $conn->prepare($sql_select_workouts);
 $stmt->bind_param("i", $userID);
 $stmt->execute();

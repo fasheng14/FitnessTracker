@@ -25,7 +25,7 @@ if ($conn->connect_error) {
 $userID = $_SESSION["user_id"];
 
 // Prepare SQL statement to fetch rest days from the database for the logged-in user
-$sql_select_rest_days = "SELECT DayOfWeek FROM RestDays WHERE UserID = ?";
+$sql_select_rest_days = "SELECT DayOfWeek, RestDayID FROM RestDays WHERE UserID = ?";
 $stmt = $conn->prepare($sql_select_rest_days);
 $stmt->bind_param("i", $userID);
 $stmt->execute();
@@ -36,7 +36,7 @@ $restDays = array();
 
 // Fetch and store rest days
 while ($row = $result->fetch_assoc()) {
-    $restDays[] = $row['DayOfWeek']; // Store only the DayOfWeek value
+    $restDays[] = $row; 
 }
 
 // Close statement and connection
