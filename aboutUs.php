@@ -31,6 +31,7 @@
             <nav class="dropContent">
                 <a href="HomePages/loggedHome.php">Home</a>
                 <a href="userDashboard.php">Dashboard</a>
+                <a href="accountInfo.php">Account</a>
                 <a href="myPlan.php">My Plan</a>
                 <a href="communityPage.php">Community</a>
                 <a href="exerciseLibrary.php">Exercise Library</a>

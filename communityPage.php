@@ -4,7 +4,7 @@ session_start();
 // Check if UserID is set in session
 if (!isset($_SESSION["user_id"])) {
     header("Location: signIn.php");
-    exit; 
+    exit;
 }
 
 $userID = $_SESSION["user_id"];
@@ -47,6 +47,7 @@ $userID = $_SESSION["user_id"];
                 <nav class="dropContent">
                     <a href="HomePages/loggedHome.php">Home</a>
                     <a href="userDashboard.php">Dashboard</a>
+                    <a href="accountInfo.php">Account</a>
                     <a href="myPlan.php">My Plan</a>
                     <a href="exerciseLibrary.php">Exercise Library</a>
                     <a href="aboutUs.php">About Us</a>
@@ -59,7 +60,7 @@ $userID = $_SESSION["user_id"];
         <!-- Main Content  -->
         <main>
             <div class="container">
-            
+
 
                 <!--switched recomendations column to be used as a friend list for now -->
                 <div class="itemContainer" id="friends">
@@ -67,7 +68,7 @@ $userID = $_SESSION["user_id"];
                     <div hidden class="item" id="friends">
                         <!--Needed to add friends to list -->
                         <div class="item" id="friendsItem">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -79,22 +80,22 @@ $userID = $_SESSION["user_id"];
                     <a href="sharePlan.php" class="addPlan">Share plan with the Community</a>
                     <!--this is where the plans are added -->
                     <div class="plans" id="plans">
+                    </div>
                 </div>
-            </div>
 
-            
 
-            <button class="messenger-button" onclick="toggleMessenger()">Messenger</button>
 
-            <!-- Messenger container -->
-            <div class="msg-container" id="msg-container">
-                <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
-                <div class="msg-area" id="msg-area"></div>
-                <div class="bottom">
-                    <input type="text" name="msginput" class="msginput" id="msginput"
-                        placeholder="Enter your message here ... (Press enter to send message)">
+                <button class="messenger-button" onclick="toggleMessenger()">Messenger</button>
+
+                <!-- Messenger container -->
+                <div class="msg-container" id="msg-container">
+                    <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
+                    <div class="msg-area" id="msg-area"></div>
+                    <div class="bottom">
+                        <input type="text" name="msginput" class="msginput" id="msginput"
+                            placeholder="Enter your message here ... (Press enter to send message)">
+                    </div>
                 </div>
-            </div>
         </main>
         <!-- Link to the JavaScript file for messaging component -->
         <script src="messenger.js"></script>
@@ -104,126 +105,126 @@ $userID = $_SESSION["user_id"];
 
     </footer>
     <script>
-    $(document).ready(function() {
-        //Function for loading friends into the friends list
-        function loadFriends() {
-            $.ajax({
-                url: 'loadFriendsFromDatabase.php',
-                type: 'GET',
-                dataType: 'json',
-                success: function(friends) {
-                    console.log(friends);
-                    //Users can also view the full plan and stats of their added friends
-                    friends.forEach(function(friend) {
-                        $('#friends').append('<div class="item" id="recommendationItem"><h3>' + friend.FriendUsername + '</h3><button class="viewPlan" onClick="submitUserID('+ friend.UserID2 + ')">View  Friend\'s plan</button></div></div>');
-                    });
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error loading friends: ', status, error);
-                }
+        $(document).ready(function () {
+            //Function for loading friends into the friends list
+            function loadFriends() {
+                $.ajax({
+                    url: 'loadFriendsFromDatabase.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (friends) {
+                        console.log(friends);
+                        //Users can also view the full plan and stats of their added friends
+                        friends.forEach(function (friend) {
+                            $('#friends').append('<div class="item" id="recommendationItem"><h3>' + friend.FriendUsername + '</h3><button class="viewPlan" onClick="submitUserID(' + friend.UserID2 + ')">View  Friend\'s plan</button></div></div>');
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error loading friends: ', status, error);
+                    }
+                });
+            }
+
+            //Function for loadin plans into the plan section
+            function loadPlans() {
+                $.ajax({
+                    url: 'loadPlansFromDatabase.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (plans) {
+                        console.log(plans)
+                        plans.forEach(function (plan) {
+                            var planHtml = '<div class="item" id="workoutItem">';
+                            planHtml += '<h3>' + plan.PlanName + ' by </h3>'
+                            planHtml += '<h3><span class="username-clickable">' + plan.Username + '</span>';
+                            planHtml += '<div class="addFriend" style="display: none;"><button class="friendButton" data-userID="' + plan.UserID + '">Add Friend</button>';
+                            planHtml += '<div class="friendDropdown" style="display: none;"><b><a class="add-friend" href="#" data-username="' + plan.Username + '">Confirm</a></div></div></h3>';
+                            planHtml += '<p>' + plan.Description + '</p>';
+                            planHtml += '<button class="viewPlan" onClick="submitUserID(' + plan.UserID + ')">View their full plan</button></div>'
+                            $('#plans').append(planHtml);
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error getting plans: ', status, error);
+                    }
+                });
+            }
+
+            //This function is for clicking on an username on and then the add friend button pops up
+            $(document).on('click', '.username-clickable', function (event) {
+                event.preventDefault();
+                var addFriendBtn = $(this).siblings('.addFriend');
+                // Hide other "Add Friend" buttons
+                $('.addFriend').not(addFriendBtn).hide();
+                // Toggle visibility of the clicked "Add Friend" button
+                addFriendBtn.toggle();
             });
-        }
+            //This function adds the user clicked on to the friends list once add friend is clicked
+            $(document).on('click', '.friendButton', function (event) {
+                event.preventDefault();
 
-        //Function for loadin plans into the plan section
-        function loadPlans() {
-            $.ajax({
-                url: 'loadPlansFromDatabase.php',
-                type: 'GET',
-                dataType: 'json',
-                success: function(plans) {
-                    console.log(plans)
-                    plans.forEach(function(plan) {
-                        var planHtml = '<div class="item" id="workoutItem">';
-                    planHtml += '<h3>' + plan.PlanName + ' by </h3>'
-                    planHtml += '<h3><span class="username-clickable">' + plan.Username + '</span>';
-                    planHtml += '<div class="addFriend" style="display: none;"><button class="friendButton" data-userID="' + plan.UserID + '">Add Friend</button>';
-                    planHtml += '<div class="friendDropdown" style="display: none;"><b><a class="add-friend" href="#" data-username="' + plan.Username + '">Confirm</a></div></div></h3>';
-                    planHtml += '<p>' + plan.Description + '</p>';
-                    planHtml += '<button class="viewPlan" onClick="submitUserID('+ plan.UserID + ')">View their full plan</button></div>'
-                    $('#plans').append(planHtml);
-                    });
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error getting plans: ', status, error);
-                }
+                // Get the username from the data attribute
+                var userID = $(this).attr('data-userID');
+
+
+
+
+
+
+                var addFriendButton = $(this);
+                //Ajax request for adding the friend into the database
+                $.ajax({
+                    url: 'addFriend.php',
+                    type: 'POST',
+                    data: { userID: userID },
+                    success: function (response) {
+                        // Handle success response
+                        if (response.success) {
+                            loadFriends();
+
+                        }
+                    },
+
+
+
+
+                });
+                //Hides the add friend button
+                addFriendButton.hide();
             });
-        }
 
-        //This function is for clicking on an username on and then the add friend button pops up
-        $(document).on('click', '.username-clickable', function(event) {
-        event.preventDefault(); 
-        var addFriendBtn = $(this).siblings('.addFriend');
-        // Hide other "Add Friend" buttons
-        $('.addFriend').not(addFriendBtn).hide();
-        // Toggle visibility of the clicked "Add Friend" button
-        addFriendBtn.toggle();
-    });
-    //This function adds the user clicked on to the friends list once add friend is clicked
-    $(document).on('click', '.friendButton', function(event) {
-    event.preventDefault(); 
 
-    // Get the username from the data attribute
-    var userID = $(this).attr('data-userID');
 
-    
-
-    
-
-    
-    var addFriendButton = $(this);
-    //Ajax request for adding the friend into the database
-    $.ajax({
-    url: 'addFriend.php',
-    type: 'POST',
-    data: { userID: userID }, 
-    success: function(response) {
-        // Handle success response
-        if (response.success) {
+            // Call the functions to load friends and plans
             loadFriends();
-            
-        } 
-    },
-    
-
-    
-    
-});
-    //Hides the add friend button
-    addFriendButton.hide();
-    });
-
-    
-
-        // Call the functions to load friends and plans
-        loadFriends();
-        loadPlans();
+            loadPlans();
 
 
-    });
-    //This functions is used when any of the view plans buttons are clicked
-    function submitUserID(UserID) {
-    // Create a new form element
-    //This is used to submit the userID of the dashboard to be looked at
-    var form = document.createElement("form");
-    form.setAttribute("method", "post");
-    form.setAttribute("action", "planDashboard.php");
+        });
+        //This functions is used when any of the view plans buttons are clicked
+        function submitUserID(UserID) {
+            // Create a new form element
+            //This is used to submit the userID of the dashboard to be looked at
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "planDashboard.php");
 
-    // Create a hidden input field for UserID
-    var input = document.createElement("input");
-    input.setAttribute("type", "hidden");
-    input.setAttribute("name", "UserID");
-    input.setAttribute("value", UserID);
+            // Create a hidden input field for UserID
+            var input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "UserID");
+            input.setAttribute("value", UserID);
 
-    // Append the input field to the form
-    form.appendChild(input);
+            // Append the input field to the form
+            form.appendChild(input);
 
-    // Append the form to the document body
-    document.body.appendChild(form);
+            // Append the form to the document body
+            document.body.appendChild(form);
 
-    // Submit the form
-    form.submit();
-    
-}
-</script>
+            // Submit the form
+            form.submit();
+
+        }
+    </script>
 
     </html>

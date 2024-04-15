@@ -8,9 +8,9 @@ $username = $_SESSION['username'];
 
 //checks if user signed in or not
 //If not sends back to home, so that they can log in
-if($username === null){
+if ($username === null) {
     header("Location: HomePages/unloggedHome.html");
- }
+}
 
 ?>
 <!DOCTYPE html>
@@ -29,12 +29,19 @@ if($username === null){
 
 <body>
     <header>
-        <h1>Fitness Tracker</h1>
+        <a class="logo" href="HomePages/loggedHome.php">
+            <!-- Image -->
+            <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" width="150px">
+        </a>
+        <div class="name">
+            <h1 style="font-size: 3em;">Personal Exercise Library</h1>
+        </div>
         <div class="dropDown">
             <button class="dropButton">Menu</button>
             <nav class="dropContent">
                 <a href="HomePages/loggedHome.php">Home Page</a>
                 <a href="userDashboard.php">My Profile</a>
+                <a href="accountInfo.php">Account</a>
                 <a href="myPlan.php">My Plan</a>
                 <a href="communityPage.php">Community</a>
                 <a href="logout.php">Sign out </a>
@@ -105,11 +112,12 @@ if($username === null){
             httpRequest.open("GET", "deleteUserExercise.php?exerciseId=" + exerciseId, true);
             httpRequest.send();
             //Refreshes the page, so that delete will be shown 
-            setTimeout(function() {
+            setTimeout(function () {
                 location.reload();
             }, 100);
         }
-        </script>
+    </script>
 
 </body>
+
 </html>

@@ -62,6 +62,7 @@ $conn->close();
             <button class="dropButton">Menu</button>
             <nav class="dropContent">
                 <a href="../userDashboard.php">Dashboard</a>
+                <a href="../accountInfo.php">Account</a>
                 <a href="../myPlan.php">My Plan</a>
                 <a href="../communityPage.php">Community</a>
                 <a href="../exerciseLibrary.php">Exercise Library</a>
@@ -76,15 +77,15 @@ $conn->close();
     <main>
         <div>
             <h2 style="margin-bottom: 20px;">welcome back
-                <?php echo $username ?> 
+                <?php echo $username ?>
             </h2>
-        </div>       
-    
+        </div>
+
 
         <div class="signUpContainer">
 
             <div class="signUpImageBox">
-            <!-- Image -->
+                <!-- Image -->
                 <img src="graphic/signUpImage.webp" alt="Sign Up Image" class="signup-image">
             </div>
 
@@ -98,7 +99,7 @@ $conn->close();
                 <!-- Sign Up Button -->
                 <a href="../myPlan.php" class="signup-button">GO TO YOUR PLAN</a>
 
-            
+
             </div>
         </div>
 
@@ -118,7 +119,7 @@ $conn->close();
             </div>
 
             <div class="signUpImageBox">
-            <!-- Image -->
+                <!-- Image -->
                 <img src="graphic/signUpImage.webp" alt="Sign Up Image" class="signup-image">
             </div>
         </div>
@@ -126,7 +127,7 @@ $conn->close();
         <div class="signUpContainer">
 
             <div class="signUpImageBox">
-            <!-- Image -->
+                <!-- Image -->
                 <img src="graphic/signUpImage.webp" alt="Sign Up Image" class="signup-image">
             </div>
 
@@ -134,13 +135,14 @@ $conn->close();
 
                 <div class="motivational-piece">
                     <h3></h3>
-                    <p>Connect with the MagnCreo community for support, tips, and to explore the health journeys of others.</p>
+                    <p>Connect with the MagnCreo community for support, tips, and to explore the health journeys of
+                        others.</p>
                 </div>
 
                 <!-- Sign Up Button -->
                 <a href="../communityPage.php" class="signup-button">Join the MagnCreo Community</a>
 
-            
+
             </div>
         </div>
 
@@ -152,7 +154,8 @@ $conn->close();
             <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
             <div class="msg-area" id="msg-area"></div>
             <div class="bottom">
-                <input type="text" name="msginput" class="msginput" id="msginput" placeholder="Enter your message here ... (Press enter to send message)">
+                <input type="text" name="msginput" class="msginput" id="msginput"
+                    placeholder="Enter your message here ... (Press enter to send message)">
             </div>
         </div>
 

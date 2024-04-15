@@ -84,10 +84,11 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?echo $username?> Dashboard</title>
+    <title><? echo $username ?> Dashboard</title>
     <link rel="stylesheet" type="text/css" href="userDashboardStyle.css">
     <!-- Link to the CSS file for messaging component -->
     <link rel="stylesheet" type="text/css" href="messenger.css">
@@ -96,20 +97,22 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
-         <div class="homeLogo" href="HomePages/loggedHome.php">
+        <a class="logo" href="HomePages/loggedHome.php">
             <!-- Image -->
             <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" width="150px">
-        </div>
+        </a>
         <div class="name">
-            <h1 style="font-size: 2em;"><?echo $username?>'s Hub</h1>
+            <h1 style="font-size: 3em;"><? echo $username ?>'s Hub</h1>
         </div>
         <!-- Navigation between site pages  -->
         <div class="dropDown">
             <button class="dropButton">Menu</button>
             <nav class="dropContent">
                 <a href="HomePages/loggedHome.php">Home</a>
+                <a href="accountInfo.php">Account</a>
                 <a href="myPlan.php">My Plan</a>
                 <a href="communityPage.php">Community</a>
                 <a href="exerciseLibrary.php">Exercise Library</a>
@@ -188,7 +191,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
 
             <!-- Current body stats item box  -->
             <div class="item" id="currentBodyStat">
-                <h3><?php echo $username?>'s Records</h3>
+                <h3><?php echo $username ?>'s Records</h3>
                 <p id="weight"></p>
                 <p id="benchPressPR"></p>
                 <p id="squatPR"></p>
@@ -205,7 +208,8 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
             <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
             <div class="msg-area" id="msg-area"></div>
             <div class="bottom">
-                <input type="text" name="msginput" class="msginput" id="msginput" placeholder="Enter your message here ... (Press enter to send message)">
+                <input type="text" name="msginput" class="msginput" id="msginput"
+                    placeholder="Enter your message here ... (Press enter to send message)">
             </div>
         </div>
     </main>
@@ -219,20 +223,20 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
     <!-- JavaScript libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-       $(document).ready(function() {
+        $(document).ready(function () {
             // Event listener for the "Sign Out" link
-            $("#signOutLink").click(function(event) {
-                event.preventDefault(); 
+            $("#signOutLink").click(function (event) {
+                event.preventDefault();
 
                 // Make an AJAX request to the signOutProcess.php file
                 $.ajax({
                     url: "signOutProcess.php",
                     method: "GET",
-                    success: function(response) {
+                    success: function (response) {
                         // Handle success, such as redirecting the user to the sign-in page
                         window.location.href = "signIn.php";
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         // Handle errors
                         console.error(xhr.responseText);
                     }
@@ -245,10 +249,10 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                     url: 'loadGoalsFromDatabase.php',
                     type: 'GET',
                     dataType: 'json',
-                    data: {userID: <?php echo $userID; ?>},
-                    success: function(data) {
+                    data: { userID: <?php echo $userID; ?> },
+                    success: function (data) {
                         // Iterate through each goal
-                        data.forEach(function(goal) {
+                        data.forEach(function (goal) {
                             switch (goal.Category) {
                                 case 'weekly':
                                     // Append a new paragraph for each weekly goal
@@ -267,7 +271,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                             }
                         });
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('Error loading goals for dashboard:', status, error);
                     }
                 });
@@ -282,8 +286,8 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                     url: 'loadBodyStats.php',
                     type: 'GET',
                     dataType: 'json',
-                    data: {userID: <?php echo $userID; ?>},
-                    success: function(data) {
+                    data: { userID: <?php echo $userID; ?> },
+                    success: function (data) {
                         // Check if data is empty
                         if (data.length > 0) {
                             // Extract the first row of data
@@ -300,7 +304,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                             $('#currentBodyStat').append('<p>No body stats available.</p>');
                         }
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('Error loading body stats:', status, error);
                     }
                 });
@@ -311,6 +315,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
         });
     </script>
 </body>
+
 </html>
 
 <?php

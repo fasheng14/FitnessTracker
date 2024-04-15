@@ -113,6 +113,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
             <button class="dropButton">Menu</button>
             <nav class="dropContent">
                 <a href="HomePages/loggedHome.php">Home</a>
+                <a href="accountInfo.php">Account</a>
                 <a href="myPlan.php">My Plan</a>
                 <a href="communityPage.php">Community</a>
                 <a href="exerciseLibrary.php">Exercise Library</a>
@@ -130,32 +131,32 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
             <!-- Today's workout item box  -->
             <div class="item" id="todayWorkout">
                 <h3>Today's Workout</h3>
-                <?php if ($isRestDay) : ?>
+                <?php if ($isRestDay): ?>
                     <p>Today is a rest day!</p>
-                <?php else : ?>
-                <table>
-                    <tr>
-                        <th>Exercises</th>
-                        <th>Sets</th>
-                        <th>Reps</th>
-                        <th>Weight</th>
-                        <th>Distance</th>
-                        <th>Duration</th>
-                    </tr>
-                    <?php
-                    // Populate the table rows with fetched workout data
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $row['Name'] . "</td>";
-                        echo "<td>" . $row['Sets'] . "</td>";
-                        echo "<td>" . $row['Reps'] . "</td>";
-                        echo "<td>" . $row['Weight'] . "</td>";
-                        echo "<td>" . $row['Distance'] . "</td>";
-                        echo "<td>" . $row['Duration'] . "</td>";
-                        echo "</tr>";
-                    }
-                    ?>
-                </table>
+                <?php else: ?>
+                    <table>
+                        <tr>
+                            <th>Exercises</th>
+                            <th>Sets</th>
+                            <th>Reps</th>
+                            <th>Weight</th>
+                            <th>Distance</th>
+                            <th>Duration</th>
+                        </tr>
+                        <?php
+                        // Populate the table rows with fetched workout data
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row['Name'] . "</td>";
+                            echo "<td>" . $row['Sets'] . "</td>";
+                            echo "<td>" . $row['Reps'] . "</td>";
+                            echo "<td>" . $row['Weight'] . "</td>";
+                            echo "<td>" . $row['Distance'] . "</td>";
+                            echo "<td>" . $row['Duration'] . "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </table>
                 <?php endif; ?>
             </div>
 
@@ -208,7 +209,8 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
             <div class="header" onclick="toggleMessenger()">Messenger <span class="close-btn"></span></div>
             <div class="msg-area" id="msg-area"></div>
             <div class="bottom">
-                <input type="text" name="msginput" class="msginput" id="msginput" placeholder="Enter your message here ... (Press enter to send message)">
+                <input type="text" name="msginput" class="msginput" id="msginput"
+                    placeholder="Enter your message here ... (Press enter to send message)">
             </div>
         </div>
     </main>
@@ -222,20 +224,20 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
     <!-- JavaScript libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-       $(document).ready(function() {
+        $(document).ready(function () {
             // Event listener for the "Sign Out" link
-            $("#signOutLink").click(function(event) {
-                event.preventDefault(); 
+            $("#signOutLink").click(function (event) {
+                event.preventDefault();
 
                 // Make an AJAX request to the signOutProcess.php file
                 $.ajax({
                     url: "signOutProcess.php",
                     method: "GET",
-                    success: function(response) {
+                    success: function (response) {
                         // Handle success, such as redirecting the user to the sign-in page
                         window.location.href = "signIn.php";
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         // Handle errors
                         console.error(xhr.responseText);
                     }
@@ -248,9 +250,9 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                     url: 'loadGoalsFromDatabase.php',
                     type: 'GET',
                     dataType: 'json',
-                    success: function(data) {
+                    success: function (data) {
                         // Iterate through each goal
-                        data.forEach(function(goal) {
+                        data.forEach(function (goal) {
                             switch (goal.Category) {
                                 case 'weekly':
                                     // Append a new paragraph for each weekly goal
@@ -269,7 +271,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                             }
                         });
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('Error loading goals for dashboard:', status, error);
                     }
                 });
@@ -284,7 +286,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                     url: 'loadBodyStats.php',
                     type: 'GET',
                     dataType: 'json',
-                    success: function(data) {
+                    success: function (data) {
                         // Check if data is empty
                         if (data.length > 0) {
                             // Extract the first row of data
@@ -301,7 +303,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                             $('#currentBodyStat').append('<p>No body stats available.</p>');
                         }
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('Error loading body stats:', status, error);
                     }
                 });
@@ -312,6 +314,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
         });
     </script>
 </body>
+
 </html>
 
 <?php
