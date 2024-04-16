@@ -119,7 +119,7 @@ body {
     border-radius: 10px; 
 }
 
-.addPlan:hover, .viewPlan:hover, .friendButton:hover {
+.addPlan:hover, .viewPlan:hover, .friendButton:hover, .removeFriend:hover {
     background-color: #555; 
 }
 .friendButton {
@@ -130,7 +130,7 @@ body {
 
 }
 
-.viewPlan  {
+.viewPlan, .removeFriend{
     color: white;
     text-decoration: none;
     padding: 8px; 
@@ -139,5 +139,9 @@ body {
     background-color: black; 
     border-radius: 10px;
 
+}
+
+.removeFriend{
+    margin-left: 100px;
 }
 
