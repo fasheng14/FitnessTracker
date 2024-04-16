@@ -128,7 +128,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
         <div class="container">
             <!-- Full workout schedule -->
             <div class="item" id="todayWorkout">
-                <h3>Today's Workout</h3>
+                <h3><? echo $username ?>'s Routine</h3>
                 <table>
                     <tr>
                         <th>Day</th>
@@ -156,7 +156,7 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
                 </table>
                 <!--This button does not do anything yet, but will be used so the user can use other
                 users workouts and schedule, if they would like -->
-                <button class="addPlan">Use this Routine</button>
+                <button class="addPlan" onclick="saveRoutine()">Use this Routine</button>
             </div>
 
             <!-- Daily Report item box  -->
@@ -313,6 +313,22 @@ $totalExerciseDuration = $result_duration->fetch_assoc()['TotalDuration'];
             // Call the function to load body stats when the page is ready
             loadBodyStats();
         });
+
+        //function that saves the viewed users  routine into your own schedule 
+        function saveRoutine() {
+            userID = <?php echo $userID; ?>;
+            console.log(userID)
+            $.ajax({
+                url: 'saveRoutine.php',
+                type: 'POST',
+                data: { userID: userID },
+                success: function (data) {
+                    console.log("Routine saved")
+                }
+
+
+            })
+        }
     </script>
 </body>
 

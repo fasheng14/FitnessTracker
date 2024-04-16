@@ -116,7 +116,7 @@ $userID = $_SESSION["user_id"];
                         console.log(friends);
                         //Users can also view the full plan and stats of their added friends
                         friends.forEach(function (friend) {
-                            $('#friends').append('<div class="item" id="recommendationItem"><h3>' + friend.FriendUsername + '</h3><button class="viewPlan" onClick="submitUserID(' + friend.UserID2 + ')">View  Friend\'s plan</button></div></div>');
+                            $('#friends').append('<div class="item" id="recommendationItem"><h3>' + friend.FriendUsername + '</h3><button class="viewPlan" onClick="submitUserID(' + friend.UserID2 + ')">View  Friend\'s plan</button><button class="removeFriend" data-friendshipID="' + friend.FriendshipID + '">Remove Friend </button></div></div>');
                         });
                     },
                     error: function (xhr, status, error) {
@@ -180,7 +180,7 @@ $userID = $_SESSION["user_id"];
                     success: function (response) {
                         // Handle success response
                         if (response.success) {
-                            loadFriends();
+                            console.log("Friend Added");
 
                         }
                     },
@@ -191,6 +191,25 @@ $userID = $_SESSION["user_id"];
                 });
                 //Hides the add friend button
                 addFriendButton.hide();
+                loadFriends();
+            });
+
+            //Function for removing friend
+            $(document).on('click', '.removeFriend', function (event) {
+                event.preventDefault();
+                var friendshipID = $(this).attr('data-friendshipID');
+                console.log(friendshipID);
+                $.ajax({
+                    url: 'deleteFriend.php',
+                    type: 'POST',
+                    cache: false,
+                    data: {friendshipID: friendshipID},
+                    success: function (response){
+                        console.log("Friend Removed");
+                        //Reloads the page so that friend is removed
+                        location.reload()
+                    }
+                })
             });
 
 
@@ -225,6 +244,8 @@ $userID = $_SESSION["user_id"];
             form.submit();
 
         }
+
+        
     </script>
 
     </html>
