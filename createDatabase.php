@@ -125,11 +125,26 @@ CREATE TABLE PresetWorkouts (
 $sql_insert_presetWorkouts_data = "
 INSERT INTO PresetWorkouts (PresetExerciseName, MuscleGroup, Days, Sets, Description, DemoVideoLink)
 VALUES
-('Jumping Jacks', 'Full-body', 3, 3, 'Jumping jacks exercise for full-body workout.', 'https://www.youtube.com/watch?v=iSSAk4XCsRA'),
-('Squats', 'Legs', 3, 3, 'Basic squat exercise targeting the leg muscles.', 'https://www.youtube.com/watch?v=l83R5PblSMA'),
-('Push-Ups', 'Arms', 3, 3, 'Classic push-up exercise targeting the arms and chest muscles.', 'https://www.youtube.com/watch?v=_l3ySVKYVJ8'),
-('Bench Press', 'Chest', 3, 3, 'Bench press exercise for chest muscle development.', 'https://www.youtube.com/watch?v=SCVCLChPQFY'),
-('Pull-Ups', 'Back', 3, 3, 'Pull-up exercise targeting the back muscles.', 'https://www.youtube.com/watch?v=aAggnpPyR6E')
+('Squats', 'Legs', 4, 8, 'Squat exercise for lower body strength and muscle development.', 'https://www.youtube.com/watch?v=QKKZ9AGYTi4'),
+    ('Deadlifts', 'Back', 4, 6, 'Deadlift exercise for building back muscles and overall strength.', 'https://www.youtube.com/watch?v=op9kVnSso6Q'),
+    ('Bench Press', 'Chest', 4, 8, 'Bench press exercise for chest muscle development.', 'https://www.youtube.com/watch?v=SCVCLChPQFY'),
+    ('Pull-Ups', 'Back', 3, 10, 'Pull-up exercise for back and bicep strength.', 'https://www.youtube.com/watch?v=eGo4IYlbE5g'),
+    ('Bicep Curls', 'Arms', 3, 12, 'Bicep curl exercise for building arm muscles.', 'https://www.youtube.com/watch?v=ZqcXZW0v3QM'),
+    ('Lunges', 'Legs', 3, 10, 'Lunge exercise for leg strength and balance.', 'https://www.youtube.com/watch?v=-bXyrHtcR3U'),
+    ('Push-Ups', 'Chest', 4, 15, 'Push-up exercise for chest and tricep development.', 'https://www.youtube.com/watch?v=IODxDxX7oi4'),
+    ('Bent-Over Rows', 'Back', 4, 8, 'Bent-over row exercise for back and arm strength.', 'https://www.youtube.com/watch?v=G8l_8chR5BE'),
+    ('Leg Press', 'Legs', 3, 12, 'Leg press exercise for building leg strength and muscle.', 'https://www.youtube.com/watch?v=O3nvzH8ONFw'),
+    ('Tricep Dips', 'Arms', 3, 10, 'Tricep dip exercise for targeting the triceps.', 'https://www.youtube.com/watch?v=0326dy_-CzM'),
+    ('Chest Flyes', 'Chest', 3, 10, 'Chest flye exercise for chest muscle isolation.', 'https://www.youtube.com/watch?v=b9L1B6hMffI'),
+    ('Barbell Rows', 'Back', 4, 8, 'Barbell row exercise for back and arm development.', 'https://www.youtube.com/watch?v=G8l_8chR5BE'),
+    ('Leg Extensions', 'Legs', 3, 12, 'Leg extension exercise for quadriceps isolation.', 'https://www.youtube.com/watch?v=YyvSfVjQeL0'),
+    ('Hammer Curls', 'Arms', 3, 12, 'Hammer curl exercise for targeting the biceps.', 'https://www.youtube.com/watch?v=TwD-YGVP4Bk'),
+    ('Incline Bench Press', 'Chest', 4, 8, 'Incline bench press for upper chest development.', 'https://www.youtube.com/watch?v=esQi683XR44'),
+    ('Lat Pulldowns', 'Back', 4, 10, 'Lat pulldown exercise for back muscle growth.', 'https://www.youtube.com/watch?v=r7GA2FvqYsk'),
+    ('Calf Raises', 'Legs', 3, 15, 'Calf raise exercise for strengthening calf muscles.', 'https://www.youtube.com/watch?v=05zgnAWHd2Q'),
+    ('Skull Crushers', 'Arms', 3, 10, 'Skull crusher exercise for tricep development.', 'https://www.youtube.com/watch?v=-RhqgYDvjrk'),
+    ('Pullovers', 'Chest', 3, 12, 'Pullover exercise for chest and back engagement.', 'https://www.youtube.com/watch?v=BJJFf1M2JN4'),
+    ('T-Bar Rows', 'Back', 4, 8, 'T-bar row exercise for building back strength.', 'https://www.youtube.com/watch?v=edzSb0vI_bY')
 ";
 
 
