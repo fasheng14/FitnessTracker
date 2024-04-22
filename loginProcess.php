@@ -53,10 +53,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
             } else {
                 // Authentication failed
                 echo "Invalid username or password";
+                header("Location: signIn.php?loginFailed=true");
+                exit();
             }
         } else {
             // Authentication failed
             echo "Invalid username or password";
+            header("Location: signIn.php?loginFailed=true");
+            exit();
         }
 
         // Close the statement
