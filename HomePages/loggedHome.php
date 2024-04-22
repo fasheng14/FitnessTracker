@@ -17,6 +17,9 @@ if ($conn->connect_error) {
 // Grabs the username of the logged-in user
 $username = $_SESSION['username'];
 
+//Checks if user is admin
+$isAdmin = $_SESSION['isAdmin'];
+
 // Fetch user data from the database except the current user
 $sql = "SELECT Username FROM User WHERE Username != '$username'";
 $result = $conn->query($sql);
@@ -66,7 +69,9 @@ $conn->close();
                 <a href="../myPlan.php">My Plan</a>
                 <a href="../communityPage.php">Community</a>
                 <a href="../exerciseLibrary.php">Exercise Library</a>
-                <a href="../SignUpPages/adminAccountCreate.php">Create an Admin Account</a>
+                <?php  if ($isAdmin == 1) {
+                    echo "<a href='../SignUpPages/adminAccountCreate.php'>Create an Admin Account</a>";
+                }?>
                 <a href="../createDatabase.php">Create the database</a>
                 <a href="../aboutUs.php">About Us</a>
                 <a href="../logout.php">Sign out </a>

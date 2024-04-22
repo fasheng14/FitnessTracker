@@ -1,4 +1,8 @@
 
+ <?
+ //Checks if the log in was inncorect
+ $loginFailed = isset($_GET['loginFailed']) && $_GET['loginFailed'] == 'true';
+ ?>
  <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +29,12 @@
     <!-- Main Content  -->
     <main>
         <h2>Sign In</h2>
+        <?php
+        // Display error message if login failed
+        if ($loginFailed) {
+            echo '<p class="error-message">Invalid username and/or password</p>';
+        }
+        ?>
         <form action="loginProcess.php" method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
