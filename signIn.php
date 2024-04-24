@@ -23,7 +23,6 @@
             <!-- Image -->
             <img src="HomePages/graphic/fitnessLogo.png" alt="MagnCreo Logo" class="logo">
         </div>
-        <a href="SignUpPages/accountCreate.php">Create an Account</a>
     </header>
 
     <!-- Main Content  -->
@@ -44,6 +43,8 @@
 
             <button type="submit" name="login">Login</button>
         </form>
+        <a href="SignUpPages/accountCreate.php">Create an Account</a>
+
     </main>
 </body>
 </html>

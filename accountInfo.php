@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Check if UserID is set in session
+if (!isset($_SESSION["user_id"])) {
+    header("Location: signIn.php");
+    exit;
+}
+
+$userID = $_SESSION["user_id"];
+?>
+
 <html lang="en">
 
 <head>
@@ -40,34 +52,39 @@
     <main>
         <div class="container">
             <div class="item">
-                <form action="" method="post">
+                <form action="updateAccount.php" method="post">
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
-                    <button class="updateButton" type="submit">Update</button>
+                    <button class="updateButton" type="submit" name="update_password">Update</button>
+                </form>
+                <form action="updateAccount.php" method="post">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    <button class="updateButton" type="submit" name="update_username">Update</button>
                 </form>
             </div>
 
             <div class="item">
-                <form action="" method="post">
+                <form action="updateAccount.php" method="post">
                     <label for="fname">First Name:</label>
                     <input type="text" id="fname" name="fname" required>
 
                     <label for="lname">Last Name:</label>
                     <input type="text" id="lname" name="lname" required>
-                    <button class="updateButton" type="submit">Update</button>
+                    <button class="updateButton" type="submit" name="update_name">Update</button>
                 </form>
             </div>
 
             <div class="item">
-                <form action="" method="post">
+                <form action="updateAccount.php" method="post">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
-                    <button class="updateButton" type="submit">Update</button>
+                    <button class="updateButton" type="submit" name="update_email">Update</button>
                 </form>
             </div>
 
             <div class="item">
-                <form action="" method="post">
+                <form action="updateAccount.php" method="post">
                     <label for="height">Height (feet):</label>
                     <input type="number" id="height" name="height" step="0.01" required>
 
@@ -76,7 +93,7 @@
 
                     <label for="age">Age:</label>
                     <input type="number" id="age" name="age" required>
-                    <button class="updateButton" type="submit">Update</button>
+                    <button class="updateButton" type="submit" name="update_body">Update</button>
                 </form>
             </div>
         </div>
