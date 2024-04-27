@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
     $dayOfWeek = $_POST["dayOfWeek"];
 
-    // Prepare SQL statement to insert rest day into the database
+    // insert rest day into the database
     $sql_insert_rest_day = "INSERT INTO RestDays (UserID, DayOfWeek) 
                             VALUES (?, ?)";
     $stmt = $conn->prepare($sql_insert_rest_day);
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Rest day added successfully
         $stmt->close();
         $conn->close();
-        // Redirect back to the same page or wherever appropriate
+        // Redirect back to the same page 
         header("Location: myPlan.php");
         exit;
     } else {

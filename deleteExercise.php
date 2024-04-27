@@ -19,11 +19,11 @@ $exerciseId = $_GET['exerciseId'];
 // SQL statement to delete related entries from userexerciselibrary table
 $sql_delete_user_exercises = "DELETE FROM userExerciseLibrary WHERE ExerciseID='$exerciseId'";
 
-// SQL statement to delete exercise from database
+// delete exercise from database
 $sql_delete_exerciseId = "DELETE FROM ExerciseLibrary WHERE ExerciseID='$exerciseId'";
 
 if ($conn->query($sql_delete_user_exercises) === TRUE) {
-    // Once related entries are deleted, proceed to delete the exercise from ExerciseLibrary table
+    //  proceed to delete the exercise from ExerciseLibrary table
     $sql_delete_exerciseId = "DELETE FROM ExerciseLibrary WHERE ExerciseID='$exerciseId'";
     
     if ($conn->query($sql_delete_exerciseId) === TRUE) {

@@ -166,7 +166,7 @@ $conn->close();
 
     </main>
     <!-- Link to the JavaScript file for messaging component -->
-    <script src="../messenger.js"></script>
+    <script src="messenger.js"></script>
 
 </body>
 

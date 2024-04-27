@@ -69,3 +69,7 @@ setInterval(function() {
         update();
     }
 }, 2500);
+
+// REFERENCES
+
+// https://github.com/howCodeORG/Messenger/blob/master/get-messages.php

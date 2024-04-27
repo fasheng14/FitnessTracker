@@ -24,7 +24,7 @@ if ($conn->connect_error) {
 // Get user ID from session
 $userID = $_SESSION["user_id"];
 
-// Prepare SQL statement to fetch rest days from the database for the logged-in user
+// fetch rest days from the database for the logged-in user
 $sql_select_rest_days = "SELECT DayOfWeek, RestDayID FROM RestDays WHERE UserID = ?";
 $stmt = $conn->prepare($sql_select_rest_days);
 $stmt->bind_param("i", $userID);
