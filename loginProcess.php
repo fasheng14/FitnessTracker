@@ -20,12 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    // Prepare the SQL query with a parameterized statement
+   
     $sql = "SELECT UserID, Username, Password, isAdmin FROM User WHERE Username = ?";
 
-    // Set up a prepared statement
+
     if ($stmt = $db->prepare($sql)) {
-        // Bind the parameter
+        
         $stmt->bind_param("s", $username);
 
         // Execute the query

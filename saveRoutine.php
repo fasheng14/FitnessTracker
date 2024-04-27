@@ -26,7 +26,7 @@ $userID = $_SESSION["user_id"];
 
 $userID2 = $_POST['userID'];
 
-// Prepare SQL statement to fetch workouts from the database from user2
+// fetch workouts from the database from user2
 $sql_select_workouts = "SELECT Name, Sets, Reps, Weight, Distance, Duration, DayOfWeek FROM CustomWorkouts WHERE UserID = ?";
 $stmt = $conn->prepare($sql_select_workouts);
 $stmt->bind_param("i", $userID2);
@@ -44,7 +44,7 @@ while ($row = $result->fetch_assoc()) {
 // Close statement 
 $stmt->close();
 
-// Prepare SQL statement to insert fetched workouts for the logged in user
+//  insert fetched workouts for the logged in user
 $sql_insert_workouts = "INSERT INTO CustomWorkouts (UserID, Name, Sets, Reps, Weight, Distance, Duration, DayOfWeek) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt_insert = $conn->prepare($sql_insert_workouts);
 

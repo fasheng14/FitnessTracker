@@ -33,7 +33,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Prepare SQL statement to fetch goals for the logged-in user
+// fetch goals for the logged-in user
 $sql = "SELECT * FROM Goals WHERE UserID = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $userID);

@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 
 $exerciseId = $_GET['exerciseId'];
 
-// SQL statement to delete the exercise from personal library 
+// delete the exercise from personal library 
 $sql_delete_user_exercises = "DELETE FROM userExerciseLibrary WHERE ExerciseID='$exerciseId' AND UserID='$userID'";
 
 

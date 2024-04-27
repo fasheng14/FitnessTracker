@@ -29,7 +29,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Prepare SQL statement to delete the rest day
+//  delete the rest day
 $sql_delete_restday = "DELETE FROM RestDays WHERE RestDayID = ?";
 $stmt = $conn->prepare($sql_delete_restday);
 $stmt->bind_param("i", $restdayID);

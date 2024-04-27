@@ -27,7 +27,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Prepare SQL statement to delete the custom workout from the database
+// delete the custom workout from the database
 $sql_delete_workout = "DELETE FROM CustomWorkouts WHERE CustomWorkoutID = ?";
 $stmt = $conn->prepare($sql_delete_workout);
 $stmt->bind_param("i", $customWorkoutID);
